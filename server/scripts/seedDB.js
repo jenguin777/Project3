@@ -5,7 +5,7 @@ const db = require("../models");
 
 mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/recipewizard-auth");
 
-// Need to replace all of this ingredient seed data with ingredient seed data
+// Ingredient seed data
 
 const ingredientSeed = [
   {
