@@ -17,4 +17,8 @@ export default {
   saveBook: function(bookData) {
     return axios.post("/api/books", bookData);
   }
+  // Gets recipes using search query
+  // getRecipes: function(query) {
+  //   return axios.get("/api/recipes", { params: { q: query } });
+  // }
 };
