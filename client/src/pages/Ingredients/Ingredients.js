@@ -1,20 +1,17 @@
 import React, { Component } from "react";
 import DeleteBtn from "../../components/DeleteBtn";
 import API from "../../utils/API";
-// import { Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { Col, Row, Container } from "../../components/Grid";
 import { RecipeList, RecipeListItem } from "../../components/RecipeList";
 import { List, ListItem } from "../../components/List";
-import { Input,
-  //  TextArea, 
-   FormBtn } from "../../components/Form";
-
+import { Input, TextArea, FormBtn} from "../../components/Form";
 
 class Ingredients extends Component {
   state = {
     name: "",
     recipes: [],
-    recipeSearch: "chicken"
+    chosenIngred: ["chicken"]
   };
 
   componentDidMount() {
@@ -23,7 +20,7 @@ class Ingredients extends Component {
   }
 
   loadAPIRecipes = () => {
-    API.getAPIRecipes(this.state.recipeSearch)
+    API.getAPIRecipes(this.state.chosenIng)
       .then(res => this.setState({ recipes: res.data }))
       .catch(err => console.log(err));
   };
