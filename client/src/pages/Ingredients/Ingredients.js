@@ -54,7 +54,48 @@ class Ingredients extends Component {
         <Row>
           <Col size="md-6">
             <div className="page-header">
-              <h1>What Ingredients Do I Have?</h1>
+              <h1>Ingredients On Hand:</h1>
+              {this.state.ingredients.length ? (
+              <List>
+                {this.state.ingredients.map(ingredient => (
+                  <ListItem key={ingredient._id}>
+                    <Link to={"/ingredients/" + ingredient._id}>
+                      <strong>
+                        
+                      </strong>
+                    </Link>
+                    <DeleteBtn onClick={() => this.deleteIngredient(ingredient._id)} />
+                  </ListItem>
+                ))}
+              </List>
+            ) : (
+              <h3>No Results to Display</h3>
+            )}
+
+
+
+
+          {/*
+                {!this.state.ingredients.length ? (
+                <h1 className="text-center">No Ingredients to Display</h1>
+              ) : (
+                <IngredientList>
+                  {this.state.ingredients.map(ingredient => {
+                    return (
+                      <IngredientListItem
+                        key={ingredient._id}
+
+                        href={recipe.href}
+                        ingredients={recipe.ingredients}
+                        thumbnail={recipe.thumbnail}
+                      />
+                    );
+                  })}
+                </RecipeList>
+              )}
+         */}
+
+
               <form>
                 <Input
                   value={this.state.name}
@@ -73,7 +114,7 @@ class Ingredients extends Component {
           </Col>
           <Col size="md-6 sm-12">
             <div className="page-header">
-              <h1>Recipes With Your Ingredients:</h1>
+              <h1>Recipes With Ingredients:</h1>
           {/*  
             {this.state.ingredients.length ? (
               <List>
