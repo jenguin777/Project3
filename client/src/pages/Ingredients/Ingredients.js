@@ -55,7 +55,7 @@ class Ingredients extends Component {
       <Container fluid>
         <Row>
           <Col size="md-6">
-            <div class="page-header">
+            <div className="page-header">
               <h1>What Ingredients Do I Have?</h1>
               <form>
                 <Input
@@ -74,7 +74,7 @@ class Ingredients extends Component {
             </div>
           </Col>
           <Col size="md-6 sm-12">
-            <div class="page-header">
+            <div className="page-header">
               <h1>Recipes With Your Ingredients:</h1>
           {/*  
             {this.state.ingredients.length ? (
