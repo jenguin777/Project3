@@ -113,7 +113,7 @@ class Ingredients extends Component {
             </div>
           </Col>
           <Col size="md-6 sm-12">
-            <div class="page-header">
+            <div className="page-header">
               <h1>Recipes With Ingredients:</h1>
           {/*  
             {this.state.ingredients.length ? (
