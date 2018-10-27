@@ -9,9 +9,7 @@ import { Input, TextArea, FormBtn } from "../../components/Form";
 class Ingredients extends Component {
   state = {
     ingredients: [],
-    title: "",
-    author: "",
-    synopsis: ""
+    ingredientSearch: ""
   };
 
   componentDidMount() {
@@ -21,7 +19,7 @@ class Ingredients extends Component {
   loadIngredients = () => {
     API.getIngredients()
       .then(res =>
-        this.setState({ ingredients: res.data, title: "", author: "", synopsis: "" })
+        this.setState({ ingredients: res.data})
       )
       .catch(err => console.log(err));
   };
@@ -41,9 +39,9 @@ class Ingredients extends Component {
 
   handleFormSubmit = event => {
     event.preventDefault();
-    if (this.state.ingredient) {
+    if (this.state.ingredients) {
       API.saveIngredient({
-        ingredient: this.state.ingredient
+        ingredient: this.state.ingredients
       })
         .then(res => this.loadIngredients())
         .catch(err => console.log(err));
@@ -55,17 +53,58 @@ class Ingredients extends Component {
       <Container fluid>
         <Row>
           <Col size="md-6">
-            <div class="page-header">
-              <h1>What Ingredients Do I Have?</h1>
+            <div className="page-header">
+              <h1>Ingredients On Hand:</h1>
+              {this.state.ingredients.length ? (
+              <List>
+                {this.state.ingredients.map(ingredient => (
+                  <ListItem key={ingredient._id}>
+                    <Link to={"/ingredients/" + ingredient._id}>
+                      <strong>
+                        
+                      </strong>
+                    </Link>
+                    <DeleteBtn onClick={() => this.deleteIngredient(ingredient._id)} />
+                  </ListItem>
+                ))}
+              </List>
+            ) : (
+              <h3>No Results to Display</h3>
+            )}
+
+
+
+
+          {/*
+                {!this.state.ingredients.length ? (
+                <h1 className="text-center">No Ingredients to Display</h1>
+              ) : (
+                <IngredientList>
+                  {this.state.ingredients.map(ingredient => {
+                    return (
+                      <IngredientListItem
+                        key={ingredient._id}
+
+                        href={recipe.href}
+                        ingredients={recipe.ingredients}
+                        thumbnail={recipe.thumbnail}
+                      />
+                    );
+                  })}
+                </RecipeList>
+              )}
+         */}
+
+
               <form>
                 <Input
-                  value={this.state.ingredient}
+                  value=""
                   onChange={this.handleInputChange}
                   name="ingredient"
                   placeholder="Ingredient (required)"
                 />
                 <FormBtn
-                  disabled={!(this.state.ingredient)}
+                  disabled={!(this.state.ingredients)}
                   onClick={this.handleFormSubmit}
                 >
                   Submit Ingredient
@@ -75,7 +114,7 @@ class Ingredients extends Component {
           </Col>
           <Col size="md-6 sm-12">
             <div class="page-header">
-              <h1>Recipes With Your Ingredients:</h1>
+              <h1>Recipes With Ingredients:</h1>
           {/*  
             {this.state.ingredients.length ? (
               <List>
