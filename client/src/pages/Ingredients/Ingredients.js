@@ -10,6 +10,7 @@ import { Input, TextArea, FormBtn} from "../../components/Form";
 class Ingredients extends Component {
   state = {
     name: "",
+    ingredients: "",
     recipes: [],
     chosenIngred: ["chicken"]
   };
@@ -20,7 +21,7 @@ class Ingredients extends Component {
   }
 
   loadAPIRecipes = () => {
-    API.getAPIRecipes(this.state.chosenIng)
+    API.getAPIRecipes(this.state.chosenIngred)
       .then(res => this.setState({ recipes: res.data }))
       .catch(err => console.log(err));
   };
@@ -28,7 +29,6 @@ class Ingredients extends Component {
   loadIngredients = () => {
     API.getIngredients()
       .then(res =>
-
         this.setState({ ingredients: res.data, name: ""})
       )
       .catch(err => console.log(err));
@@ -127,26 +127,7 @@ class Ingredients extends Component {
               )}
             </Col>
           </Row>
-          {/*  
-            {this.state.ingredients.length ? (
-              <List>
-                {this.state.ingredients.map(book => (
-                  <ListItem key={ingredient._id}>
-                    <Link to={"/ingredients/" + ingredient._id}>
-                      <strong>
-                        
-                      </strong>
-                    </Link>
-                    <DeleteBtn onClick={() => this.deleteIngredient(ingredient._id)} />
-                  </ListItem>
-                ))}
-              </List>
-            ) : (
-              <h3>No Results to Display</h3>
-            )}
-            */}    
-
-            </div>
+         </div>
           </Col>
         </Row>
       </Container>
