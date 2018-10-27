@@ -3,6 +3,7 @@ import React, { Component } from "react";
 import API from "../../utils/API";
 // import { Link } from "react-router-dom";
 import { Col, Row, Container } from "../../components/Grid";
+
 // import { List, ListItem } from "../../components/List";
 // import { Input, TextArea, FormBtn } from "../../components/Form";
 import { Input, FormBtn } from "../../components/Form";
@@ -10,6 +11,7 @@ import { Input, FormBtn } from "../../components/Form";
 class Ingredients extends Component {
   state = {
     name: ""
+
   };
 
   componentDidMount() {
@@ -19,7 +21,8 @@ class Ingredients extends Component {
   loadIngredients = () => {
     API.getIngredients()
       .then(res =>
-        this.setState({ name: res.data})
+
+        this.setState({ ingredients: res.data, name: ""})
       )
       .catch(err => console.log(err));
   };
@@ -39,6 +42,7 @@ class Ingredients extends Component {
 
   handleFormSubmit = event => {
     event.preventDefault();
+
     if (this.state.name) {
       API.saveIngredient({
         name: this.state.name
@@ -110,6 +114,26 @@ class Ingredients extends Component {
                   Submit Ingredient
                 </FormBtn>
               </form>
+              
+              {this.state.ingredients ? (
+              <List>
+                {this.state.ingredients.map(ingredients => {
+                  return (
+                    <ListItem key={ingredients._id}>
+                      <a href={"/ingredients/" + ingredients._id}>
+                        <strong>
+                          {ingredients.name}
+                        </strong>
+                      </a>
+                      <DeleteBtn onClick={() => this.deleteIngredient(ingredients._id)} />
+                    </ListItem>
+                  );
+                })}
+              </List>
+            ) : (
+              <h3>No Results to Display</h3>
+            )}
+          
             </div>
           </Col>
           <Col size="md-6 sm-12">
