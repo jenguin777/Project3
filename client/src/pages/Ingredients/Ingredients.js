@@ -3,18 +3,27 @@ import DeleteBtn from "../../components/DeleteBtn";
 import API from "../../utils/API";
 import { Link } from "react-router-dom";
 import { Col, Row, Container } from "../../components/Grid";
+import { RecipeList, RecipeListItem } from "../../components/RecipeList";
 import { List, ListItem } from "../../components/List";
 import { Input, TextArea, FormBtn} from "../../components/Form";
 
 class Ingredients extends Component {
   state = {
     name: "",
-    chosenIngred: []
+    recipes: [],
+    chosenIngred: ["chicken"]
   };
 
   componentDidMount() {
     this.loadIngredients();
+    this.loadAPIRecipes();
   }
+
+  loadAPIRecipes = () => {
+    API.getAPIRecipes(this.state.chosenIng)
+      .then(res => this.setState({ recipes: res.data }))
+      .catch(err => console.log(err));
+  };
 
   loadIngredients = () => {
     API.getIngredients()
@@ -96,24 +105,46 @@ class Ingredients extends Component {
           <Col size="md-6 sm-12">
             <div className="page-header">
               <h1>Recipes With Your Ingredients:</h1>
-              {/*  
-                {this.state.ingredients.length ? (
-                  <List>
-                    {this.state.ingredients.map(book => (
-                      <ListItem key={ingredient._id}>
-                        <Link to={"/ingredients/" + ingredient._id}>
-                          <strong>
-                            
-                          </strong>
-                        </Link>
-                        <DeleteBtn onClick={() => this.deleteIngredient(ingredient._id)} />
-                      </ListItem>
-                    ))}
-                  </List>
-                ) : (
-                  <h3>No Results to Display</h3>
-                )}
-                */}    
+
+              <Row>
+            <Col size="xs-12">
+              {!this.state.recipes.length ? (
+                <h1 className="text-center">No Recipes to Display</h1>
+              ) : (
+                <RecipeList>
+                  {this.state.recipes.map(recipe => {
+                    return (
+                      <RecipeListItem
+                        key={recipe.title}
+                        title={recipe.title}
+                        href={recipe.href}
+                        ingredients={recipe.ingredients}
+                        thumbnail={recipe.thumbnail}
+                      />
+                    );
+                  })}
+                </RecipeList>
+              )}
+            </Col>
+          </Row>
+          {/*  
+            {this.state.ingredients.length ? (
+              <List>
+                {this.state.ingredients.map(book => (
+                  <ListItem key={ingredient._id}>
+                    <Link to={"/ingredients/" + ingredient._id}>
+                      <strong>
+                        
+                      </strong>
+                    </Link>
+                    <DeleteBtn onClick={() => this.deleteIngredient(ingredient._id)} />
+                  </ListItem>
+                ))}
+              </List>
+            ) : (
+              <h3>No Results to Display</h3>
+            )}
+            */}    
 
             </div>
           </Col>
