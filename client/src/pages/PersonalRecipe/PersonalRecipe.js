@@ -20,23 +20,23 @@ class PersonalRecipe extends Component {
       <Container fluid>
         <Row>
           <Col size="md-4">
-            <img src="./assets/favicon.ico" class="img-thumbnail" alt="Responsive image" alt-text="recipe">
+            <img src="./assets/favicon.ico" className="img-thumbnail" alt="Responsive image" alt-text="recipe">
             </img>
           </Col>
           <Col size="md-8">
-            <div class="form-group">
+            <div className="form-group">
               <label for="formGroupExampleInput">Recipe Name</label>
-              <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Spaghetti Carbonara"/>
+              <input type="text" className="form-control" id="formGroupExampleInput" placeholder="Spaghetti Carbonara"/>
             </div>
-            <div class="form-group">
+            <div className="form-group">
               <label for="formGroupExampleInput">Time to Prepare</label>
-              <input type="text" class="form-control" id="formGroupExampleInput" placeholder="90 minutes"/>
+              <input type="text" className="form-control" id="formGroupExampleInput" placeholder="90 minutes"/>
             </div>
           </Col>
         </Row>
         <Row>
           <Col size="md-10 md-offset-1">
-            <table class="table table-responsive table-striped">
+            <table className="table table-striped">
                 <thead>
                   <tr>
                     <th scope="col">#</th>
@@ -62,9 +62,9 @@ class PersonalRecipe extends Component {
         </Row>
         <Row>
           <Col size="md-12">
-          <div class="form-group">
+          <div className="form-group">
             <label for="instructions">Recipe Instructions</label>
-            <textarea class="form-control" rows="10" id="instructions"></textarea>
+            <textarea className="form-control" rows="10" id="instructions"></textarea>
           </div>
           </Col>
         </Row>
