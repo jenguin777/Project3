@@ -1,6 +1,6 @@
 import React, { Fragment } from "react";
-import { Link } from 'react-router-dom';
-import { Col } from '../Grid';
+// import { Link } from 'react-router-dom';
+// import { Col } from '../Grid';
 import './Nav.css';
 
 const Nav = (props) => {
