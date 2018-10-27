@@ -1,19 +1,15 @@
 import React, { Component } from "react";
-// import DeleteBtn from "../../components/DeleteBtn";
+import DeleteBtn from "../../components/DeleteBtn";
 import API from "../../utils/API";
-// import { Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { Col, Row, Container } from "../../components/Grid";
-
-// import { List, ListItem } from "../../components/List";
-import { Input,
-  //  TextArea, 
-   FormBtn } from "../../components/Form";
-
+import { List, ListItem } from "../../components/List";
+import { Input, TextArea, FormBtn} from "../../components/Form";
 
 class Ingredients extends Component {
   state = {
-    name: ""
-
+    name: "",
+    chosenIngred: []
   };
 
   componentDidMount() {
@@ -100,24 +96,24 @@ class Ingredients extends Component {
           <Col size="md-6 sm-12">
             <div className="page-header">
               <h1>Recipes With Your Ingredients:</h1>
-          {/*  
-            {this.state.ingredients.length ? (
-              <List>
-                {this.state.ingredients.map(book => (
-                  <ListItem key={ingredient._id}>
-                    <Link to={"/ingredients/" + ingredient._id}>
-                      <strong>
-                        
-                      </strong>
-                    </Link>
-                    <DeleteBtn onClick={() => this.deleteIngredient(ingredient._id)} />
-                  </ListItem>
-                ))}
-              </List>
-            ) : (
-              <h3>No Results to Display</h3>
-            )}
-            */}    
+              {/*  
+                {this.state.ingredients.length ? (
+                  <List>
+                    {this.state.ingredients.map(book => (
+                      <ListItem key={ingredient._id}>
+                        <Link to={"/ingredients/" + ingredient._id}>
+                          <strong>
+                            
+                          </strong>
+                        </Link>
+                        <DeleteBtn onClick={() => this.deleteIngredient(ingredient._id)} />
+                      </ListItem>
+                    ))}
+                  </List>
+                ) : (
+                  <h3>No Results to Display</h3>
+                )}
+                */}    
 
             </div>
           </Col>
