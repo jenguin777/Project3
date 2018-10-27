@@ -3,7 +3,7 @@ import { Route, Switch } from 'react-router-dom';
 import LoginForm from './pages/Auth/LoginForm';
 import SignupForm from './pages/Auth/SignupForm';
 import Nav from "./components/Nav";
-import Books from './pages/Books';
+import Ingredients from './pages/Ingredients';
 import Detail from "./pages/Detail";
 import NoMatch from "./pages/NoMatch";
 import AUTH from './utils/AUTH';
@@ -71,9 +71,9 @@ class App extends Component {
             <Nav user={this.state.user} logout={this.logout}/>
             <div className="main-view">
               <Switch>
-                <Route exact path="/" component={() => <Books user={this.state.user}/>} />
-                <Route exact path="/books" component={() => <Books user={this.state.user}/>} />
-                <Route exact path="/books/:id" component={Detail} />
+                <Route exact path="/" component={() => <Ingredients user={this.state.user}/>} />
+                <Route exact path="/ingredients" component={() => <Ingredients user={this.state.user}/>} />
+                <Route exact path="/ingredients/:id" component={Detail} />
                 <Route component={NoMatch} />
               </Switch>
             </div>
@@ -82,7 +82,7 @@ class App extends Component {
         { !this.state.loggedIn && (
           <div className="auth-wrapper" style={{paddingTop:40}}>
             <Route exact path="/" component={() => <LoginForm login={this.login}/>} />
-            <Route exact path="/books" component={() => <LoginForm user={this.login}/>} />
+            <Route exact path="/ingredients" component={() => <LoginForm user={this.login}/>} />
             <Route exact path="/signup" component={SignupForm} />
           </div>
         )}
