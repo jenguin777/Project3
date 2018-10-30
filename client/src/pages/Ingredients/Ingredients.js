@@ -11,24 +11,24 @@ class Ingredients extends Component {
   state = {
     name: "",
     recipes: [],
-    chosenIngred: ["chicken"]
+    chosenIngred: "",
+    recipeSearch: ""
   };
 
   componentDidMount() {
     this.loadIngredients();
-    this.loadAPIRecipes();
-  }
-
-  loadAPIRecipes = () => {
-    API.getAPIRecipes(this.state.chosenIng)
-      .then(res => this.setState({ recipes: res.data }))
-      .catch(err => console.log(err));
+    // this.loadApiRecipes();
   };
+
+  // loadApiRecipes = () => {
+  //   API.getApiRecipes(this.state.chosenIngred)
+  //     .then(res => this.setState({ recipes: res.data }))
+  //     .catch(err => console.log(err));
+  // };
 
   loadIngredients = () => {
     API.getIngredients()
       .then(res =>
-
         this.setState({ ingredients: res.data, name: ""})
       )
       .catch(err => console.log(err));
@@ -57,6 +57,23 @@ class Ingredients extends Component {
         .then(res => this.loadIngredients())
         .catch(err => console.log(err));
     }
+  };
+
+  handleInputChange2 = event => {
+    // Destructure the name and value properties off of event.target
+    // Update the appropriate state
+    const { name, value } = event.target;
+    this.setState({
+      [name]: value
+    });
+  };
+
+  handleFormSubmit2 = event => {
+    // When the form is submitted, prevent its default behavior, get recipes update the recipes state
+    event.preventDefault();
+    API.getApiRecipes(this.state.recipeSearch)
+      .then(res => this.setState({ recipes: res.data }))
+      .catch(err => console.log(err));
   };
 
   render() {
@@ -97,7 +114,7 @@ class Ingredients extends Component {
                 })}
               </List>
             ) : (
-              <h3>No Results to Display</h3>
+              <h3>No Ingredients to Display</h3>
             )}
           
             </div>
@@ -107,6 +124,35 @@ class Ingredients extends Component {
               <h1>Recipes With Your Ingredients:</h1>
 
               <Row>
+              <Container>
+          <Row>
+            <Col size="md-12">
+              <form>
+                <Container>
+                  <Row>
+                    <Col size="xs-9 sm-10">
+                      <Input
+                        name="recipeSearch"
+                        value={this.state.recipeSearch}
+                        onChange={this.handleInputChange2}
+                        placeholder="Search For a Recipe"
+                      />
+                    </Col>
+                    <Col size="xs-3 sm-2">
+                      <FormBtn
+                        onClick={this.handleFormSubmit2}
+                        type="success"
+                        className="input-lg"
+                      >
+                        Search
+                      </FormBtn>
+                    </Col>
+                  </Row>
+                </Container>
+              </form>
+            </Col>
+          </Row>
+          <Row>
             <Col size="xs-12">
               {!this.state.recipes.length ? (
                 <h1 className="text-center">No Recipes to Display</h1>
@@ -127,26 +173,9 @@ class Ingredients extends Component {
               )}
             </Col>
           </Row>
-          {/*  
-            {this.state.ingredients.length ? (
-              <List>
-                {this.state.ingredients.map(book => (
-                  <ListItem key={ingredient._id}>
-                    <Link to={"/ingredients/" + ingredient._id}>
-                      <strong>
-                        
-                      </strong>
-                    </Link>
-                    <DeleteBtn onClick={() => this.deleteIngredient(ingredient._id)} />
-                  </ListItem>
-                ))}
-              </List>
-            ) : (
-              <h3>No Results to Display</h3>
-            )}
-            */}    
-
-            </div>
+        </Container>
+          </Row>
+         </div>
           </Col>
         </Row>
       </Container>

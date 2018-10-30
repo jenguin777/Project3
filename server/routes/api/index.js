@@ -1,7 +1,7 @@
 const router = require("express").Router();
 const recipeRoutes = require("./recipes");
 const ingredientRoutes = require("./ingredients");
-const apiRoutes = require("./apiRoutes");
+const apiRoutes = require("./api");
 
 // Routes
 router.use("/recipes", recipeRoutes);

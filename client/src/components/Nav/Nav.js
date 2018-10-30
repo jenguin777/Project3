@@ -51,7 +51,7 @@ const Nav = (props) => {
         {/* <h1>Recipe Warlock</h1> */}
         <form className="form-inline my-2 my-lg-0">
           {/* <input className="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search"/> */}
-          <button className="btn btn-outline-danger my-2 my-sm-0" type="submit">Search</button>
+          <button className="btn btn-outline-danger my-2 my-sm-0" onClick={() => this.handleFormSubmit2()} type="submit">Search</button>
         </form>
       </div>
     </nav>    

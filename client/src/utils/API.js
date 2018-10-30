@@ -21,8 +21,8 @@ export default {
   },
 
   // --------RECIPES (FROM API)--------------
-  // Gets all favorited recipes using search query
-  getAPIRecipes: function(query) {
+  // Gets all recipes from API using search query
+  getApiRecipes: function(query) {
     return axios.get("/api/apirecipes", { params: { q: query } });
   },
 
