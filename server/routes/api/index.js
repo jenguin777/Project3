@@ -1,11 +1,11 @@
 const router = require("express").Router();
 const recipeRoutes = require("./recipes");
+const recipeApiRoutes = require("./recipeApi");
 const ingredientRoutes = require("./ingredients");
-const apiRoutes = require("./api");
 
 // Routes
 router.use("/recipes", recipeRoutes);
+router.use("/apirecipes", recipeApiRoutes)
 router.use("/ingredients", ingredientRoutes);
-router.use("/apirecipes", apiRoutes);
 
 module.exports = router;
