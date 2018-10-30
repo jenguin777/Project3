@@ -7,7 +7,6 @@ import DeleteBtn from "../../components/DeleteBtn";
 
 class PersonalRecipe extends Component {
   state = {
-    // recipes: [],
     title: "",
     ingredients: "",
     instructions: ""
@@ -87,14 +86,6 @@ class PersonalRecipe extends Component {
                   Submit Recipe
                 </FormBtn>
               </form>
-            {/* <div className="form-group">
-              <label for="formGroupExampleInput">Recipe Name</label>
-              <input type="text" className="form-control" id="formGroupExampleInput" placeholder="Spaghetti Carbonara"/>
-            </div>
-            <div className="form-group">
-              <label for="formGroupExampleInput">Time to Prepare</label>
-              <input type="text" className="form-control" id="formGroupExampleInput" placeholder="90 minutes"/>
-            </div> */}
           </Col>
         </Row>
 
@@ -140,14 +131,6 @@ class PersonalRecipe extends Component {
                   </tr>
                 </tbody>
               </table>
-          </Col>
-        </Row> */}
-        {/* <Row>
-          <Col size="md-12">
-          <div className="form-group">
-            <label for="instructions">Recipe Instructions</label>
-            <textarea className="form-control" rows="10" id="instructions"></textarea>
-          </div>
           </Col>
         </Row> */}
       </Container>
