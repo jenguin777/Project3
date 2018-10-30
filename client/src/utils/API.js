@@ -23,6 +23,7 @@ export default {
   // --------RECIPES (FROM API)--------------
   // Gets all recipes from API using search query
   getApiRecipes: function(query) {
+    console.log("API Query: " + query);
     return axios.get("/api/apirecipes", { params: { q: query } });
   },
 

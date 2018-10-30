@@ -59,7 +59,7 @@ class Ingredients extends Component {
     }
   };
 
-  handleInputChange2 = event => {
+  handleRecipeInputChange = event => {
     // Destructure the name and value properties off of event.target
     // Update the appropriate state
     const { name, value } = event.target;
@@ -68,15 +68,21 @@ class Ingredients extends Component {
     });
   };
 
-  handleFormSubmit2 = event => {
+  handleRecipeFormSubmit = event => {
     // When the form is submitted, prevent its default behavior, get recipes update the recipes state
     event.preventDefault();
+    console.log('EVENT ', event.target)
     API.getApiRecipes(this.state.recipeSearch)
-      .then(res => this.setState({ recipes: res.data }))
+      .then(res => {
+        this.setState({ recipes: res.data })
+        console.log('res ', res.data)
+      })
       .catch(err => console.log(err));
   };
 
   render() {
+    console.log('PROPS ', this.props)
+    console.log('STATE ', this.state)
     return (
       <Container fluid>
         <Row>
@@ -134,13 +140,13 @@ class Ingredients extends Component {
                       <Input
                         name="recipeSearch"
                         value={this.state.recipeSearch}
-                        onChange={this.handleInputChange2}
+                        onChange={this.handleRecipeInputChange}
                         placeholder="Search For a Recipe"
                       />
                     </Col>
                     <Col size="xs-3 sm-2">
                       <FormBtn
-                        onClick={this.handleFormSubmit2}
+                        onClick={this.handleRecipeFormSubmit}
                         type="success"
                         className="input-lg"
                       >
