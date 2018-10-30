@@ -11,8 +11,8 @@ class Ingredients extends Component {
   state = {
     name: "",
     recipes: [],
-    chosenIngred: "ham",
-    recipeSearch: "chicken"
+    chosenIngred: "",
+    recipeSearch: ""
   };
 
   componentDidMount() {
@@ -59,6 +59,23 @@ class Ingredients extends Component {
     }
   };
 
+  handleInputChange2 = event => {
+    // Destructure the name and value properties off of event.target
+    // Update the appropriate state
+    const { name, value } = event.target;
+    this.setState({
+      [name]: value
+    });
+  };
+
+  handleFormSubmit2 = event => {
+    // When the form is submitted, prevent its default behavior, get recipes update the recipes state
+    event.preventDefault();
+    API.getApiRecipes(this.state.recipeSearch)
+      .then(res => this.setState({ recipes: res.data }))
+      .catch(err => console.log(err));
+  };
+
   render() {
     return (
       <Container fluid>
@@ -97,7 +114,7 @@ class Ingredients extends Component {
                 })}
               </List>
             ) : (
-              <h3>No Results to Display</h3>
+              <h3>No Ingredients to Display</h3>
             )}
           
             </div>
