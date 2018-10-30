@@ -10,21 +10,21 @@ import { Input, TextArea, FormBtn} from "../../components/Form";
 class Ingredients extends Component {
   state = {
     name: "",
-    ingredients: "",
     recipes: [],
-    chosenIngred: ["chicken"]
+    chosenIngred: "ham",
+    recipeSearch: "chicken"
   };
 
   componentDidMount() {
     this.loadIngredients();
-    this.loadAPIRecipes();
-  }
-
-  loadAPIRecipes = () => {
-    API.getAPIRecipes(this.state.chosenIngred)
-      .then(res => this.setState({ recipes: res.data }))
-      .catch(err => console.log(err));
+    // this.loadApiRecipes();
   };
+
+  // loadApiRecipes = () => {
+  //   API.getApiRecipes(this.state.chosenIngred)
+  //     .then(res => this.setState({ recipes: res.data }))
+  //     .catch(err => console.log(err));
+  // };
 
   loadIngredients = () => {
     API.getIngredients()
@@ -107,6 +107,35 @@ class Ingredients extends Component {
               <h1>Recipes With Your Ingredients:</h1>
 
               <Row>
+              <Container>
+          <Row>
+            <Col size="md-12">
+              <form>
+                <Container>
+                  <Row>
+                    <Col size="xs-9 sm-10">
+                      <Input
+                        name="recipeSearch"
+                        value={this.state.recipeSearch}
+                        onChange={this.handleInputChange2}
+                        placeholder="Search For a Recipe"
+                      />
+                    </Col>
+                    <Col size="xs-3 sm-2">
+                      <FormBtn
+                        onClick={this.handleFormSubmit2}
+                        type="success"
+                        className="input-lg"
+                      >
+                        Search
+                      </FormBtn>
+                    </Col>
+                  </Row>
+                </Container>
+              </form>
+            </Col>
+          </Row>
+          <Row>
             <Col size="xs-12">
               {!this.state.recipes.length ? (
                 <h1 className="text-center">No Recipes to Display</h1>
@@ -126,6 +155,8 @@ class Ingredients extends Component {
                 </RecipeList>
               )}
             </Col>
+          </Row>
+        </Container>
           </Row>
          </div>
           </Col>
