@@ -56,8 +56,8 @@ class PersonalRecipe extends Component {
       <Container fluid>
         <Row>
           <Col size="md-4">
-            <img src="../assets/favicon.ico" className="img-thumbnail" alt="Responsive image" alt-text="recipe">
-            </img>
+            {/* <img src="../assets/favicon.ico" className="img-thumbnail" alt-text="recipe">
+            </img> */}
           </Col>
           <Col size="md-8">
           <form>
