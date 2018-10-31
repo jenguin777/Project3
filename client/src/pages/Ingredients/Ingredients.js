@@ -109,11 +109,11 @@ class Ingredients extends Component {
                 {this.state.ingredients.map(ingredients => {
                   return (
                     <ListItem key={ingredients._id}>
-                      <a href={"/ingredients/" + ingredients._id}>
+                      <p>
                         <strong>
                           {ingredients.name}
                         </strong>
-                      </a>
+                      </p>
                       <DeleteBtn onClick={() => this.deleteIngredient(ingredients._id)} />
                     </ListItem>
                   );
