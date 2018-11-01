@@ -6,8 +6,13 @@ import { Col, Row, Container } from "../../components/Grid";
 import { RecipeList, RecipeListItem } from "../../components/RecipeList";
 import { List, ListItem } from "../../components/List";
 import { Input, TextArea, FormBtn} from "../../components/Form";
+
+import CheckBtn from "../../components/CheckBtn";
+const ing = []
+
 import './ingredients.css';
 import { InputGroup } from "../../components/Form/InputGroup";
+
 
 class Ingredients extends Component {
   state = {
@@ -16,6 +21,7 @@ class Ingredients extends Component {
     recipes: [],
     chosenIngred: [],
     allIngred: "",
+
     recipeSearch: ""
   };
 
@@ -23,6 +29,7 @@ class Ingredients extends Component {
     this.loadIngredients();
     // this.loadApiRecipes();
   };
+
 
   // loadApiRecipes = () => {
   //   API.getApiRecipes(this.state.chosenIngred)
@@ -88,6 +95,29 @@ class Ingredients extends Component {
       .catch(err => console.log(err));
   };
 
+  chosenIngredients = id => {
+    console.log('CHOSEN INGREDIENTS CALLED ')
+    API.getIngredient(id)
+    .then(res => {
+      ing.push(res.data.name)
+      this.setState({ chosenIngred: ing})
+    })
+    .catch(err => console.log(err));
+  };
+
+  searchWithChosen = event => {
+    event.preventDefault();
+    console.log(ing)
+    console.log('EVENT ', event.target)
+    API.getApiRecipes(this.state.chosenIngred.join(", "))
+      .then(res => {
+        this.setState({ recipes: res.data })
+        console.log('res ', res.data)
+      })
+      .catch(err => console.log(err));
+      console.log("clicked search with ingred");
+  };
+
   render() {
     console.log('PROPS ', this.props)
     console.log('STATE ', this.state)
@@ -120,6 +150,12 @@ class Ingredients extends Component {
                 >
                   Submit Ingredient
                 </FormBtn>
+
+                <FormBtn onClick={this.searchWithChosen} >
+                  Search With Ingredients
+                </FormBtn>
+              </form>
+             
 */}
               </form><br/>
               <h1>&emsp;Ingredients On-Hand:</h1>
@@ -140,10 +176,13 @@ class Ingredients extends Component {
                         <strong>
                           {ingredients.name}
                         </strong>
-                        <DeleteBtn 
-                          onClick={() => this.deleteIngredient(ingredients._id)} 
-                        />
-                      </p>
+
+                      </a>
+                      <DeleteBtn onClick={() => this.deleteIngredient(ingredients._id)} />
+                      <CheckBtn onClick={() => this.chosenIngredients(ingredients._id)}/>
+
+                      </a>
+
                     </ListItem>
                   );
                 })}
