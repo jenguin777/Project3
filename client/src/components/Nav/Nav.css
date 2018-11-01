@@ -1,6 +1,5 @@
 .navbar {
   background-color: #654C4F;
-  color: #22B24C;
 }
 
 a {
@@ -14,4 +13,11 @@ a:hover {
 #logo {
   width: 50px;
   height: 50px;
+}
+
+.app-name {
+  color: #EEECEA;
+  font-size: 32px;
+  font-family: "lobster two";
+  margin-right: 20px;
 }

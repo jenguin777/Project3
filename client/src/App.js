@@ -74,8 +74,8 @@ class App extends Component {
               <Switch>
                 <Route exact path="/" component={() => <Ingredients user={this.state.user}/>} />
                 <Route exact path="/ingredients" component={() => <Ingredients user={this.state.user}/>} />
-                <Route exact path="/ingredients/:id" component={Detail} />
-								<Route exact path="/personalRecipe" component={PersonalRecipe} />
+                <Route exact path="/recipes/:id" component={Detail} />
+								<Route exact path="/personalrecipe" component={PersonalRecipe} />
                 <Route component={NoMatch} />
               </Switch>
             </div>

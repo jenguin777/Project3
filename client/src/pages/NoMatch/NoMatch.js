@@ -13,6 +13,9 @@ const NoMatch = () => (
               🙄
             </span>
           </h1>
+          <h6>
+            Oops, It looks like a page got torn from the Recipe Book... Sorry!
+          </h6>
         </Jumbotron>
       </Col>
     </Row>

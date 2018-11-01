@@ -8,9 +8,9 @@ export default {
     return axios.get("/api/ingredients");
   },
   // Gets the ingredient with the given id
-  getIngredient: function(id) {
-    return axios.get("/api/ingredients/" + id);
-  },
+  // getIngredient: function(id) {
+  //   return axios.get("/api/ingredients/" + id);
+  // },
   // Deletes the ingredient with the given id
   deleteIngredient: function(id) {
     return axios.delete("/api/ingredients/" + id);
