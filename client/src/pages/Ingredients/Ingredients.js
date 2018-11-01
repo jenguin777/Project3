@@ -6,12 +6,14 @@ import { Col, Row, Container } from "../../components/Grid";
 import { RecipeList, RecipeListItem } from "../../components/RecipeList";
 import { List, ListItem } from "../../components/List";
 import { Input, TextArea, FormBtn} from "../../components/Form";
+import CheckBtn from "../../components/CheckBtn";
+const ing = []
 
 class Ingredients extends Component {
   state = {
     name: "",
     recipes: [],
-    chosenIngred: "",
+    chosenIngred: [],
     recipeSearch: ""
   };
 
@@ -19,6 +21,7 @@ class Ingredients extends Component {
     this.loadIngredients();
     // this.loadApiRecipes();
   };
+
 
   // loadApiRecipes = () => {
   //   API.getApiRecipes(this.state.chosenIngred)
@@ -80,6 +83,29 @@ class Ingredients extends Component {
       .catch(err => console.log(err));
   };
 
+  chosenIngredients = id => {
+    console.log('CHOSEN INGREDIENTS CALLED ')
+    API.getIngredient(id)
+    .then(res => {
+      ing.push(res.data.name)
+      this.setState({ chosenIngred: ing})
+    })
+    .catch(err => console.log(err));
+  };
+
+  searchWithChosen = event => {
+    event.preventDefault();
+    console.log(ing)
+    console.log('EVENT ', event.target)
+    API.getApiRecipes(this.state.chosenIngred.join(", "))
+      .then(res => {
+        this.setState({ recipes: res.data })
+        console.log('res ', res.data)
+      })
+      .catch(err => console.log(err));
+      console.log("clicked search with ingred");
+  };
+
   render() {
     console.log('PROPS ', this.props)
     console.log('STATE ', this.state)
@@ -102,6 +128,9 @@ class Ingredients extends Component {
                 >
                   Submit Ingredient
                 </FormBtn>
+                <FormBtn onClick={this.searchWithChosen} >
+                  Search With Ingredients
+                </FormBtn>
               </form>
               
               {this.state.ingredients ? (
@@ -115,6 +144,7 @@ class Ingredients extends Component {
                         </strong>
                       </a>
                       <DeleteBtn onClick={() => this.deleteIngredient(ingredients._id)} />
+                      <CheckBtn onClick={() => this.chosenIngredients(ingredients._id)}/>
                     </ListItem>
                   );
                 })}
