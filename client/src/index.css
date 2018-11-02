@@ -1,5 +1,25 @@
 body {
+ 
+  background-color: #ffe6b3;
   margin: 0;
   padding: 0;
   font-family: sans-serif;
 }
+
+h1  {
+  color: #004466;
+}
+
+.login  {
+  background: url('assets/layer.jpg');
+  background-size: cover;
+  min-width: 100%;
+  min-height: 100%;
+  position: fixed; 
+  top: 0; 
+  left: 0; 
+  right: 0; 
+  bottom: 0;
+
+}
+

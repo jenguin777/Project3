@@ -1,13 +1,14 @@
 .navbar {
-  background-color: #654C4F;
+  background-color: #007399;
+  color: #ffbb99;
 }
 
 a {
-  color: #ffc107;
+  color: #ffbb99;
 }
 
 a:hover {
-  color: #EEECEA;
+  color: #999999;
 }
 
 #logo {
