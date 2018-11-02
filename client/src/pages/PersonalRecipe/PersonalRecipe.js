@@ -4,10 +4,13 @@ import API from "../../utils/API";
 import { Input, FormBtn} from "../../components/Form";
 import { List, ListItem } from "../../components/List";
 import DeleteBtn from "../../components/DeleteBtn";
+import image from '../../assets/PastaPic.jpg';
+import './PersonalRecipe.css';
 
 class PersonalRecipe extends Component {
   state = {
     title: "",
+    name: "",
     ingredients: "",
     instructions: ""
   };
@@ -54,14 +57,12 @@ class PersonalRecipe extends Component {
   render() {
     return (
       <Container fluid>
-        <Row>
-          <Col size="md-4">
-            {/* <img src="../assets/favicon.ico" className="img-thumbnail" alt-text="recipe">
-            </img> */}
-          </Col>
-          <Col size="md-8">
-          <form>
-          <Input
+        <Row id="topRow">
+          <Col size="md-6">
+            <img src={image} className="img-thumbnail" alt-text="recipe">
+            </img>
+                <form>
+                    <Input
                   value={this.state.title}
                   onChange={this.handleInputChange}
                   name="title"
@@ -73,12 +74,18 @@ class PersonalRecipe extends Component {
                   name="ingredients"
                   placeholder="Ingredients"
                 />
-                <Input
-                  value={this.state.instructions}
-                  onChange={this.handleInputChange}
-                  name="instructions"
-                  placeholder="Instructions"
-                />
+
+                <form>
+                    <div className="form-group">
+                      <textarea
+                        class="form-control" rows="10" id="instructionsInput"
+                        value={this.state.instructions}
+                        onChange={this.handleInputChange}
+                        name="instructions"
+                        placeholder="Instructions">
+                      </textarea>
+                    </div>
+                </form>
                 <FormBtn
                   disabled={!(this.state.title)}
                   onClick={this.handleFormSubmit}
@@ -87,55 +94,34 @@ class PersonalRecipe extends Component {
                 </FormBtn>
               </form>
           </Col>
-        </Row>
 
-        {this.state.recipes ? (
-              <List>
-                {this.state.recipes.map(recipes => {
-                  return (
-                    <ListItem key={recipes._id}>
-                      <a href={"/recipes/" + recipes._id}>
-                        <strong>
-                          {recipes.title}
-                        </strong>
-                      </a>
-                      <DeleteBtn onClick={() => this.deleteRecipe(recipes._id)} />
-                    </ListItem>
-                  );
-                })}
-              </List>
-            ) : (
-              <h3>No Recipes to Display</h3>
-            )}
-        {/* <Row>
-          <Col size="md-10 md-offset-1">
-            <table className="table table-striped">
-                <thead>
-                  <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">Ingredient Name</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <th scope="row">1</th>
-                    <td>Eggs</td>
-                  </tr>
-                  <tr>
-                    <th scope="row">2</th>
-                    <td>Butter</td>
-                  </tr>
-                  <tr>
-                    <th scope="row">3</th>
-                    <td>Cream</td>
-                  </tr>
-                </tbody>
-              </table>
-          </Col>
-        </Row> */}
-      </Container>
-    );
-  }
+        <Col size="md-6 sm-12">
+          <Container>
+          <h1 id="savedRecipesHeader">&emsp;Saved Recipes</h1>
+            {this.state.recipes ? (
+                  <List>
+                    {this.state.recipes.map(recipes => {
+                      return (
+                        <ListItem key={recipes._id}>
+                          <a href={"/recipes/" + recipes._id}>
+                            <strong>
+                              {recipes.title}
+                            </strong>
+                          </a>
+                          <DeleteBtn onClick={() => this.deleteRecipe(recipes._id)} />
+                        </ListItem>
+                      );
+                    })}
+                  </List>
+                ) : (
+                  <h3>No Recipes to Display</h3>
+                )}
+            </Container>
+        </Col>
+      </Row>
+    </Container>
+        );
+    }
 }
 
 export default PersonalRecipe;
