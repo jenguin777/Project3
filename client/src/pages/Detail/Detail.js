@@ -8,12 +8,22 @@ class Detail extends Component {
   state = {
     recipe: {}
   };
+
+  // When this component mounts, grab the book with the _id of this.props.match.params.id
+  // e.g. localhost:3000/ingredients/599dcb67f0f16317844583fc
+  // componentDidMount() {
+  //   API.getBook(this.props.match.params.id)
+  //     .then(res => this.setState({ book: res.data }))
+  //     .catch(err => console.log(err));
+  // }
+
   // When this component mounts, grab the recipe with the _id of this.props.match.params.id
   componentDidMount() {
     API.getRecipe(this.props.match.params.id)
       .then(res => this.setState({ recipe: res.data }))
       .catch(err => console.log(err));
   }
+
 
   render() {
     return (

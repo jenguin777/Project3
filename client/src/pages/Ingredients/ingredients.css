@@ -1,0 +1,12 @@
+body {
+    background-color: #EEECEA;
+}
+
+h1 {
+    font-size: 32px;
+    font-family: "Rochester"; 
+}
+
+.page-header {
+    margin-top: 20px;
+}
