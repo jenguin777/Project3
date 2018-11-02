@@ -4,6 +4,8 @@ import { Container, Row, Col } from '../../components/Grid';
 import { Card } from '../../components/Card';
 import { Input, FormBtn } from '../../components/Form';
 
+
+
 class LoginForm extends Component {
   
   constructor() {
@@ -31,11 +33,13 @@ class LoginForm extends Component {
 		});
 	}
 
+
 	render() {
 		if (this.state.redirectTo) {
 			return <Redirect to={{ pathname: this.state.redirectTo }} />
 		} else {
 			return (
+				<div className="login">
 				<Container>
           <Row>
             <Col size="md-3"></Col>
@@ -64,6 +68,7 @@ class LoginForm extends Component {
             <Col size="md-3"></Col>
           </Row>
 				</Container>
+				</div>
 			)
 		}
 	}
