@@ -6,13 +6,10 @@ import { Col, Row, Container } from "../../components/Grid";
 import { RecipeList, RecipeListItem } from "../../components/RecipeList";
 import { List, ListItem } from "../../components/List";
 import { Input, TextArea, FormBtn} from "../../components/Form";
-
-import CheckBtn from "../../components/CheckBtn";
-const ing = []
-
 import './ingredients.css';
 import { InputGroup } from "../../components/Form/InputGroup";
-
+import CheckBtn from "../../components/CheckBtn";
+const ing = []
 
 class Ingredients extends Component {
   state = {
@@ -21,7 +18,6 @@ class Ingredients extends Component {
     recipes: [],
     chosenIngred: [],
     allIngred: "",
-
     recipeSearch: ""
   };
 
@@ -29,7 +25,6 @@ class Ingredients extends Component {
     this.loadIngredients();
     // this.loadApiRecipes();
   };
-
 
   // loadApiRecipes = () => {
   //   API.getApiRecipes(this.state.chosenIngred)
@@ -177,11 +172,9 @@ class Ingredients extends Component {
                           {ingredients.name}
                         </strong>
 
-                      </a>
                       <DeleteBtn onClick={() => this.deleteIngredient(ingredients._id)} />
-                      <CheckBtn onClick={() => this.chosenIngredients(ingredients._id)}/>
 
-                      </a>
+                      </p>
 
                     </ListItem>
                   );
