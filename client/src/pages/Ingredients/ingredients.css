@@ -4,7 +4,11 @@ body {
 
 h1 {
     font-size: 32px;
-    font-family: "Rochester"; 
+    font-family: "Righteous"; 
+}
+
+p {
+font-family: 'Josefin Sans';
 }
 
 .page-header {

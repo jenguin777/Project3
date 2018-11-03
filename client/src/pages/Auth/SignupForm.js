@@ -53,11 +53,12 @@ class SignupForm extends Component {
     }
     
 		return (
+      <div className="login">
       <Container>
         <Row>
           <Col size="md-3"></Col>
           <Col size="md-6">
-            <Card title="Register for Recipe Warlock">
+            <Card title="Register for YumBot">
               <form style={{marginTop: 10}}>
                 <label htmlFor="username">First name: </label>
                 <Input
@@ -102,6 +103,7 @@ class SignupForm extends Component {
           <Col size="md-3"></Col>
         </Row>
       </Container>
+      </div>
 		)
 	}
 }
