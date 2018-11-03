@@ -8,6 +8,7 @@ import Detail from "./pages/Detail";
 import NoMatch from "./pages/NoMatch";
 import AUTH from './utils/AUTH';
 import PersonalRecipe from "./pages/PersonalRecipe";
+import FavoriteRecipes from "./pages/FavoriteRecipes";
 
 class App extends Component {
   
@@ -76,6 +77,7 @@ class App extends Component {
                 <Route exact path="/ingredients" component={() => <Ingredients user={this.state.user}/>} />
                 <Route exact path="/recipes/:id" component={Detail} />
 								<Route exact path="/personalrecipe" component={PersonalRecipe} />
+								<Route exact path="/favoriterecipes" component={FavoriteRecipes} />
                 <Route component={NoMatch} />
               </Switch>
             </div>
