@@ -12,28 +12,25 @@ class FavoriteRecipes extends Component {
       currentPage: "FavoriteRecipes",
       name: "",
       addIngr: "",
-      recipes: [],
-      chosenIngred: [],
-      allIngred: "",
-      recipeSearch: ""
+      faves: [],
     };
 
      
   componentDidMount() {
-    this.loadRecipes();
+    this.loadFaves();
   }
 
-  loadRecipes = () => {
-    API.getRecipes()
+  loadFaves = () => {
+    API.getFaves()
       .then(res =>
-        this.setState({ recipes: res.data, title: "", ingredients: "", instructions: "" })
+        this.setState({ faves: res.data, title: "", ingredients: "", instructions: "" })
       )
       .catch(err => console.log(err));
   };
 
-  deleteRecipe = id => {
-    API.deleteRecipe(id)
-      .then(res => this.loadRecipes())
+  deleteFave = id => {
+    API.deleteFave(id)
+      .then(res => this.loadFaves())
       .catch(err => console.log(err));
   };
 
@@ -48,12 +45,12 @@ class FavoriteRecipes extends Component {
     event.preventDefault();
 
     if (this.state.title && this.state.ingredients && this.state.instructions) {
-      API.saveRecipe({
+      API.saveFave({
         title: this.state.title, 
         ingredients: this.state.ingredients,
         instructions: this.state.instructions
       })
-        .then(res => this.loadRecipes())
+        .then(res => this.loadFaves())
         .catch(err => console.log(err));
     }
   };
@@ -70,7 +67,7 @@ class FavoriteRecipes extends Component {
                   value={this.state.title}
                   onChange={this.handleInputChange}
                   name="title"
-                  placeholder="Recipe Name"
+                  placeholder="Fave Name"
                 />
                 <Input
                   value={this.state.ingredients}
@@ -94,31 +91,31 @@ class FavoriteRecipes extends Component {
                   disabled={!(this.state.title)}
                   onClick={this.handleFormSubmit}
                 >
-                  Submit Recipe
+                  Submit Favorite Recipe
                 </FormBtn>
               </form>
           </Col>
 
         <Col size="md-6 sm-12">
           <Container>
-          <h1 id="savedRecipesHeader">&emsp;Saved Recipes</h1>
-            {this.state.recipes ? (
+          <h1 id="savedFavesHeader">&emsp;Favorite Recipes</h1>
+            {this.state.faves ? (
                   <List>
-                    {this.state.recipes.map(recipes => {
+                    {this.state.faves.map(faves => {
                       return (
-                        <ListItem key={recipes._id}>
-                          <a href={"/recipes/" + recipes._id}>
+                        <ListItem key={faves._id}>
+                          <a href={"/faves/" + faves._id}>
                             <strong>
-                              {recipes.title}
+                              {faves.title}
                             </strong>
                           </a>
-                          <DeleteBtn onClick={() => this.deleteRecipe(recipes._id)} />
+                          <DeleteBtn onClick={() => this.deleteFave(faves._id)} />
                         </ListItem>
                       );
                     })}
                   </List>
                 ) : (
-                  <h3>No Recipes to Display</h3>
+                  <h3>No Favorites to Display</h3>
                 )}
             </Container>
         </Col>
