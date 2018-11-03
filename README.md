@@ -47,9 +47,3 @@ You can see a deployed version [here.](https://immense-mesa-61835.herokuapp.com/
 ## License
 
 The MIT license applies.
-
-## Related projects
-
-Here's a list of other related projects:
-
-- [Billie Thompson's README template](https://gist.github.com/PurpleBooth/109311bb0361f32d87a2)
