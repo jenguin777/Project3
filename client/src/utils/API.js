@@ -36,13 +36,33 @@ export default {
   getRecipe: function(id) {
     return axios.get("/api/recipes/" + id);
   },
-  // Deletes the persoanl recipe with the given id
+  // Deletes the personal recipe with the given id
   deleteRecipe: function(id) {
     return axios.delete("/api/recipes/" + id);
   },
   // Saves a personal recipe to the database
   saveRecipe: function(recipeData) {
     return axios.post("/api/recipes", recipeData);
+  },
+
+    //new NL
+
+   // --------FAVORITE RECIPES--------------
+  // Gets all favorite recipes
+  getFaves: function() {
+    return axios.get("/api/faves");
+  },
+  // Gets the favorite recipe with the given id
+  getFave: function(id) {
+    return axios.get("/api/faves/" + id);
+  },
+  // Deletes the favorite recipe with the given id
+  deleteFave: function(id) {
+    return axios.delete("/api/faves/" + id);
+  },
+  // Saves a favorite recipe to the database
+  saveFave: function(recipeData) {
+    return axios.post("/api/faves", recipeData);
   }
 
 };
