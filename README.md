@@ -18,6 +18,7 @@ This project makes it easy to:
 * Search for recipes using your current ingredients using the Recipe Puppy API. You can also do a general search for recipes.
 
 ### Installing
+
 Git clone the repo [here.](https://github.com/jenguin777/Project3/)
 
 Navigate to server.js folder and "npm install" to install the required dependencies.
