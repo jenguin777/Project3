@@ -26,6 +26,8 @@ app.use(session({
   saveUninitialized: false
 }));
 
+//Build folder was added. DELETE THIS CODE LATER
+
 // Passport
 app.use(passport.initialize());
 app.use(passport.session()); // will call the deserializeUser
