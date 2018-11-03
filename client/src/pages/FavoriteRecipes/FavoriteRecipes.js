@@ -79,7 +79,7 @@ class FavoriteRecipes extends Component {
                 <form>
                     <div className="form-group">
                       <textarea
-                        class="form-control" rows="10" id="instructionsInput"
+                        className="form-control" rows="10" id="instructionsInput"
                         value={this.state.instructions}
                         onChange={this.handleInputChange}
                         name="instructions"
