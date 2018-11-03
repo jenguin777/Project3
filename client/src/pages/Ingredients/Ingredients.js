@@ -122,6 +122,9 @@ class Ingredients extends Component {
         <Row>
           <Col size="md-6">
             <div className="page-header">
+            
+                <div class="addthis_inline_share_toolbox"></div>
+            
               <h1>&emsp;Add An Ingredient</h1>
               <form>
                 <InputGroup

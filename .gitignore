@@ -3,8 +3,8 @@
 # compiled output
 /dist
 /tmp
-/build
-/client/build
+# /build
+# /client/build
 
 # dependencies
 **/node_modules

@@ -98,6 +98,10 @@ class PersonalRecipe extends Component {
         <Col size="md-6 sm-12">
           <Container>
           <h1 id="savedRecipesHeader">&emsp;Saved Recipes</h1>
+         
+        
+                <div class="addthis_inline_share_toolbox"></div>
+            
             {this.state.recipes ? (
                   <List>
                     {this.state.recipes.map(recipes => {
