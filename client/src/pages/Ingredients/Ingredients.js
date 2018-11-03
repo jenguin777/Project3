@@ -90,12 +90,13 @@ class Ingredients extends Component {
       .catch(err => console.log(err));
   };
 
+  //put ingredients in to ing array
   chosenIngredients = id => {
-    console.log('CHOSEN INGREDIENTS CALLED ')
     API.getIngredient(id)
     .then(res => {
       ing.push(res.data.name)
       this.setState({ chosenIngred: ing})
+      console.log("ING =", ing)
     })
     .catch(err => console.log(err));
   };
@@ -131,28 +132,25 @@ class Ingredients extends Component {
                   placeholder={"Ingredient (required)"}
                   btnText={"Submit"}
                 />
-
-{/*
-                <Input
+                {/* <Input
                   value={this.state.name}
                   onChange={this.handleInputChange}
                   name="name"
                   placeholder="Ingredient (required)"
-                />
-                <FormBtn
+                /> */}
+                {/* <FormBtn
                   disabled={!(this.state.name)}
                   onClick={this.handleFormSubmit}
                 >
                   Submit Ingredient
-                </FormBtn>
+                </FormBtn> */}
 
                 <FormBtn onClick={this.searchWithChosen} >
                   Search With Ingredients
                 </FormBtn>
               </form>
              
-*/}
-              </form><br/>
+              <br/>
               <h1>&emsp;Ingredients On-Hand:</h1>
               {this.state.ingredients ? (
               <List>
@@ -162,11 +160,9 @@ class Ingredients extends Component {
                       <p>
                         <input 
                           type="checkbox" 
-                          name={this.state.chosenIngred} 
-                          value={ingredients.name} 
-                          onClick={(value) => {this.setState(prevState => ({
-                            chosenIngred: [...prevState.chosenIngred, value]
-                          }))}}
+                          // name={this.state.chosenIngred} 
+                          // value={this.state.ingredients.id} 
+                          onClick={() => this.chosenIngredients(ingredients._id)}
                         /> &emsp;
                         <strong>
                           {ingredients.name}
