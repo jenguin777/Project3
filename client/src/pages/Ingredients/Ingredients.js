@@ -194,7 +194,7 @@ class Ingredients extends Component {
                       <option value="All">All Ingredient(s)</option>
                       <option value="Custom">Enter Other Ingredient(s)</option>
                     </select>
-                    <input type="text" size="65" class="form-control" value="" placeholder="...or type other ingredients list here" aria-label="Text input with dropdown button"/>
+                    <input type="text" size="65" className="form-control" inputvalue="" placeholder="...or type other ingredients list here" aria-label="Text input with dropdown button"/>
                     <div className="input-group-append">
                       <button className="btn btn-success" onClick={this.handleRecipeFormSubmit} type="success">Search</button>
                     </div>

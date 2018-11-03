@@ -60,21 +60,24 @@ class FavoriteRecipes extends Component {
       <Container fluid>
         <Row id="topRow">
           <Col size="md-6">
-            <img src={image} className="img-thumbnail" alt-text="recipe">
+            <img src={image} className="img-thumbnail" alt="recipe">
             </img>
                 <form>
-                    <Input
-                  value={this.state.title}
-                  onChange={this.handleInputChange}
-                  name="title"
-                  placeholder="Fave Name"
-                />
-                <Input
-                  value={this.state.ingredients}
-                  onChange={this.handleInputChange}
-                  name="ingredients"
-                  placeholder="Ingredients"
-                />
+                  <Input
+                    value={this.state.title}
+                    onChange={this.handleInputChange}
+                    name="title"
+                    placeholder="Fave Name"
+                    inputvalue=""
+                  />
+                  <Input
+                    value={this.state.ingredients}
+                    onChange={this.handleInputChange}
+                    name="ingredients"
+                    placeholder="Ingredients"
+                    inputvalue=""
+                  />
+                </form>
 
                 <form>
                     <div className="form-group">
@@ -86,15 +89,14 @@ class FavoriteRecipes extends Component {
                         placeholder="Instructions">
                       </textarea>
                     </div>
+                    <FormBtn
+                      disabled={!(this.state.title)}
+                      onClick={this.handleFormSubmit}
+                    >
+                      Submit Favorite Recipe
+                    </FormBtn>
                 </form>
-                <FormBtn
-                  disabled={!(this.state.title)}
-                  onClick={this.handleFormSubmit}
-                >
-                  Submit Favorite Recipe
-                </FormBtn>
-              </form>
-          </Col>
+            </Col>
 
         <Col size="md-6 sm-12">
           <Container>
