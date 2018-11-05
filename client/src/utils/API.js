@@ -19,6 +19,15 @@ export default {
   saveIngredient: function(ingredientData) {
     return axios.post("/api/ingredients", ingredientData);
   },
+  // Updates an ingredient with the given id
+  updateIngredient: function(id, ingredientData) {
+    return axios.put("/api/ingredients/" + id, ingredientData);
+  },
+  // Updates all ingredients with the given criteria
+  updateIngredients: function(filter, ingUpdate) {
+    return axios.put("/api/ingredients/", {filter, ingUpdate});
+  },
+
 
   // --------RECIPES (FROM API)--------------
   // Gets all recipes from API using search query

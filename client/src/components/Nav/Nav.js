@@ -43,7 +43,8 @@ const Nav = (props) => {
           </li>
         </ul>
         <div className="float-right">
-          {greeting}  <a href="#" className="logout" onClick={props.logout}>Logout</a>
+          {greeting}&emsp;&emsp;  
+          <a href="/" className="logout" onClick={props.logout}>Logout</a>
         </div>
       </div>
     </nav>    

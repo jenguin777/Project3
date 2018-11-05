@@ -10,3 +10,24 @@ h1 {
 .page-header {
     margin-top: 20px;
 }
+
+.othIngrTB {
+    margin-left: 40px;
+    width: 253px;
+}
+
+#swALL {
+    margin-left: 12px;
+}
+ 
+#swCHK {
+    margin-left: 8px;
+}
+
+#button-addon2 {
+    background-color: #008dbb;
+}
+
+#button-addon2:hover {
+    background-color: #007399;
+}
