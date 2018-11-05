@@ -22,9 +22,15 @@ module.exports = {
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   },
-  update: function(req, res) {
+  updateById: function(req, res) {
     db.Ingredient
       .findOneAndUpdate({ _id: req.params.id }, req.body)
+      .then(dbModel => res.json(dbModel))
+      .catch(err => res.status(422).json(err));
+  },
+  updateMany: function(req, res) {
+    db.Ingredient
+      .updateMany({ filter }, ingUpdate)
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   },
