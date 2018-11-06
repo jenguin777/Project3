@@ -1,14 +1,15 @@
 import React, { Component } from "react";
 import DeleteBtn from "../../components/DeleteBtn";
 import API from "../../utils/API";
-import { Link } from "react-router-dom";
 import { Col, Row, Container } from "../../components/Grid";
 import { RecipeList, RecipeListItem } from "../../components/RecipeList";
 import { List, ListItem } from "../../components/List";
-import { Input, TextArea, FormBtn} from "../../components/Form";
+import { Input, FormBtn} from "../../components/Form";
 import './ingredients.css';
 import { InputGroup } from "../../components/Form/InputGroup";
-import CheckBtn from "../../components/CheckBtn";
+// import CheckBtn from "../../components/CheckBtn";
+import FaveBtn from "../../components/FaveBtn";
+
 const ing = []
 
 class Ingredients extends Component {
@@ -17,20 +18,14 @@ class Ingredients extends Component {
     addIngr: "",
     recipes: [],
     chosenIngred: [],
+    faves: [],
     allIngred: "",
     recipeSearch: ""
   };
 
   componentDidMount() {
     this.loadIngredients();
-    // this.loadApiRecipes();
   };
-
-  // loadApiRecipes = () => {
-  //   API.getApiRecipes(this.state.chosenIngred)
-  //     .then(res => this.setState({ recipes: res.data }))
-  //     .catch(err => console.log(err));
-  // };
 
   loadIngredients = () => {
     API.getIngredients()
@@ -114,6 +109,12 @@ class Ingredients extends Component {
       console.log("clicked search with ingred");
   };
 
+  newFave = id => {
+    API.saveFave(id)
+      .then(res => this.loadIngredients())
+      .catch(err => console.log(err));
+  };
+
   render() {
     console.log('PROPS ', this.props)
     console.log('STATE ', this.state)
@@ -132,19 +133,7 @@ class Ingredients extends Component {
                   placeholder={"Ingredient (required)"}
                   btnText={"Submit"}
                 />
-                {/* <Input
-                  value={this.state.name}
-                  onChange={this.handleInputChange}
-                  name="name"
-                  placeholder="Ingredient (required)"
-                /> */}
-                {/* <FormBtn
-                  disabled={!(this.state.name)}
-                  onClick={this.handleFormSubmit}
-                >
-                  Submit Ingredient
-                </FormBtn> */}
-
+                
                 <FormBtn onClick={this.searchWithChosen} >
                   Search With Ingredients
                 </FormBtn>
@@ -194,7 +183,7 @@ class Ingredients extends Component {
                       <option value="All">All Ingredient(s)</option>
                       <option value="Custom">Enter Other Ingredient(s)</option>
                     </select>
-                    <input type="text" size="65" class="form-control" value="" placeholder="...or type other ingredients list here" aria-label="Text input with dropdown button"/>
+                    <input type="text" size="65" className="form-control" value="" placeholder="...or type other ingredients list here" aria-label="Text input with dropdown button"/>
                     <div className="input-group-append">
                       <button className="btn btn-success" onClick={this.handleRecipeFormSubmit} type="success">Search</button>
                     </div>
@@ -202,39 +191,7 @@ class Ingredients extends Component {
                   {/*<button className="btn btn-outline-danger my-2 my-sm-0" onClick={() => this.handleFormSubmit2()} type="submit">Search</button>*/}
                 </form><br/>
                 <h1>&emsp;Recipe Results:</h1>
-              
 
-  {/*
-          <Row>
-            <Col size="md-12">
-              <form>
-                <Container>
-                  <Row>
-                    <Col size="xs-9 sm-10">
-                      <Input
-                        name="recipeSearch"
-                        value={this.state.recipeSearch}
-                        onChange={this.handleRecipeInputChange}
-                        placeholder="Search For a Recipe"
-                      />
-                    </Col>
-                    <Col size="xs-3 sm-2">
-                      <FormBtn
-                        onClick={this.handleRecipeFormSubmit}
-                        type="success"
-                        className="input-lg"
-                      >
-                        Search
-                      </FormBtn>
-                    </Col>
-                  </Row>
-                </Container>
-              </form>
-            </Col>
-          </Row>
-              <Row>
-                <Col size="xs-12">
-      */}
                   {!this.state.recipes.length ? (
                     <h5 className="text-center">No Recipes to Display</h5>
                   ) : (
@@ -247,17 +204,16 @@ class Ingredients extends Component {
                             href={recipe.href}
                             ingredients={recipe.ingredients}
                             thumbnail={recipe.thumbnail}
-                          />
+                            >
+                        
+                        <FaveBtn onClick={() => this.newFave(recipe._id)} />
+                        </RecipeListItem>
                         );
                       })}
                     </RecipeList>
                   )}
                 </div>
-          {/*        
-                </Col>
-              </Row>
-          */}
-            </Container>
+              </Container>
           </Col>
         </Row>
       </Container>

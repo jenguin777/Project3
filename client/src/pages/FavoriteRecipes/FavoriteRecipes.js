@@ -10,8 +10,6 @@ import './FavoriteRecipes.css';
 class FavoriteRecipes extends Component {
     state = {
       currentPage: "FavoriteRecipes",
-      name: "",
-      addIngr: "",
       faves: [],
     };
 
@@ -23,7 +21,7 @@ class FavoriteRecipes extends Component {
   loadFaves = () => {
     API.getFaves()
       .then(res =>
-        this.setState({ faves: res.data, title: "", ingredients: "", instructions: "" })
+        this.setState({ faves: res.data})
       )
       .catch(err => console.log(err));
   };
@@ -44,11 +42,12 @@ class FavoriteRecipes extends Component {
   handleFormSubmit = event => {
     event.preventDefault();
 
-    if (this.state.title && this.state.ingredients && this.state.instructions) {
+    if (this.state.title && this.state.href && this.state.ingredients && this.state.thumbnail) {
       API.saveFave({
         title: this.state.title, 
+        href: this.state.href,
         ingredients: this.state.ingredients,
-        instructions: this.state.instructions
+        thumbnail: this.state.thumbnail
       })
         .then(res => this.loadFaves())
         .catch(err => console.log(err));
@@ -63,11 +62,17 @@ class FavoriteRecipes extends Component {
             <img src={image} className="img-thumbnail" alt-text="recipe">
             </img>
                 <form>
-                    <Input
+                <Input
                   value={this.state.title}
                   onChange={this.handleInputChange}
                   name="title"
                   placeholder="Fave Name"
+                />
+                <Input
+                  value={this.state.href}
+                  onChange={this.handleInputChange}
+                  name="href"
+                  placeholder="Link"
                 />
                 <Input
                   value={this.state.ingredients}
@@ -75,18 +80,12 @@ class FavoriteRecipes extends Component {
                   name="ingredients"
                   placeholder="Ingredients"
                 />
-
-                <form>
-                    <div className="form-group">
-                      <textarea
-                        class="form-control" rows="10" id="instructionsInput"
-                        value={this.state.instructions}
-                        onChange={this.handleInputChange}
-                        name="instructions"
-                        placeholder="Instructions">
-                      </textarea>
-                    </div>
-                </form>
+                <Input
+                  value={this.state.thumbnail}
+                  onChange={this.handleInputChange}
+                  name="thumbnail"
+                  placeholder="Thumbnail"
+                />
                 <FormBtn
                   disabled={!(this.state.title)}
                   onClick={this.handleFormSubmit}

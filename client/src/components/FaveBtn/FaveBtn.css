@@ -1,0 +1,10 @@
+/* Favorite Icon styling */
+.fave-btn {
+    font-size: 25px;
+    position: absolute;
+    color: black;
+  }
+
+  .fave-btn:hover {
+    color: red;
+  }
