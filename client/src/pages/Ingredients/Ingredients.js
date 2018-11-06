@@ -4,39 +4,20 @@ import API from "../../utils/API";
 import { Col, Row, Container } from "../../components/Grid";
 import { RecipeList, RecipeListItem } from "../../components/RecipeList";
 import { List, ListItem } from "../../components/List";
-import { Input, FormBtn} from "../../components/Form";
 import './ingredients.css';
 import { InputGroup } from "../../components/Form/InputGroup";
-import CheckBtn from "../../components/CheckBtn";
-
-let ing = []
-let allIng = [];
 
 class Ingredients extends Component {
   state = {
     name: "",
     addIngr: "",
     recipes: [],
-    chosenIngred: [],
-    allIngred: [],
     othIngr: "",
     recipeSearch: ""
   };
 
   componentDidMount() {
-    //Set all ingredients.selected to false when page first loads
-    //until a way is found to check the checkboxes for the ones that are true.
-    API.updateIngredients({
-      selected: true,
-      $set: { selected : false }
-    })
-    .then(res => {
-      console.log("All ingredients.selected set to false");
-    })
-    .catch(err => console.log(err));
-
     this.loadIngredients();
-   
   };
 
   loadIngredients = () => {
@@ -69,7 +50,6 @@ class Ingredients extends Component {
 
   handleFormSubmit = event => {
     event.preventDefault();
-
     if (this.state.addIngr) {
       API.saveIngredient({
         name: this.state.addIngr
@@ -105,61 +85,87 @@ class Ingredients extends Component {
       .catch(err => console.log(err));
   };
 
-  //put ingredients into ing array to be searched with
+  // When checkbox is checked, change ingredient.selected to true
   chosenIngredients = id => {
     API.getIngredient(id)
     .then(res => {
-      ing.push(res.data.name)
-      this.setState({ chosenIngred: ing})
-      console.log("ING =", ing)
+      if (!res.data.selected) {
+        API.updateIngredient(id, {
+          selected: true
+        })
+        .then(res => {
+          this.loadIngredients()
+          console.log("Ingredient was updated");
+        })
+        .catch(err => console.log(err));
+      } else {
+        API.updateIngredient(id, {
+          selected: false
+        })
+        .then(res => {
+          this.loadIngredients()
+          console.log("Ingredient was updated");
+        })
+        .catch(err => console.log(err));
+      }
     })
     .catch(err => console.log(err));
-  };
+  }; 
 
-  //JS to search with checked ingredient
+  // Search API with checked ingredients
+
   searchWithChosen = event => {
     event.preventDefault();
-    console.log(ing)
-    console.log('EVENT ', event.target)
-    API.getApiRecipes(this.state.chosenIngred.join(", "))
-      .then(res => {
+    // first, build chosenIngred String from ingredients.selected
+    let chosenIngred = "";
+    let firstTime = true;
+    this.state.ingredients.map(i => {
+      if (i.selected === true) {
+        if (firstTime === true) {
+          firstTime = false;
+          chosenIngred = i.name;
+        } else {
+          chosenIngred = chosenIngred + ", " + i.name;
+        }
+      }
+    });
+    // then use chosenIngred String to call API
+    console.log("You clicked Search Checked:  " + chosenIngred);
+    API.getApiRecipes(chosenIngred)
+      .then(res => { 
         this.setState({ recipes: res.data })
         console.log('res ', res.data)
       })
       .catch(err => console.log(err));
-      console.log("clicked searched with checked ingrdient" + ing);
-    };
-
-  allIngredients = () => {
-    API.getIngredients()
-    .then(res => {
-      this.setState({ allIngred: res.data, name: " "})
-      console.log("allIngred =", this.state.allIngred);
-    })
-    .catch(err => console.log(err));
-  }
-
-
-  //search with all ingredients in array 
-  searchWithAll = event => {
-    event.preventDefault();
-    this.allIngredients();
-    console.log('EVENT ', event.target)
-    API.getApiRecipes(this.state.allIngred)
-      .then(res => {
-        this.setState({ recipes: res.data })
-        console.log('res ', res.data)
-      })
-      .catch(err => console.log(err));
-      console.log("clicked 'Search with all'");
   };
 
-  //search by typing ingredients
+  // Search API with all ingredients
+  searchWithAll = event => {
+    event.preventDefault();
+    // first, build allIngred String from ingredients
+    let allIngred = "";
+    let firstTime = true;
+    this.state.ingredients.map(i => {
+      if (firstTime === true) {
+        firstTime = false;
+        allIngred = i.name;
+      } else {
+        allIngred = allIngred + ", " + i.name;
+      }
+    });
+    // then use allIngred String to call API
+    console.log("You clicked Search All:  " + allIngred);
+    API.getApiRecipes(allIngred)
+      .then(res => {
+        this.setState({ recipes: res.data })
+      })
+      .catch(err => console.log(err));
+  };
+
+  // Search API with Other Ingredients from textbox
   searchWithOther = event => {
     event.preventDefault();
-    console.log(ing)
-    console.log('EVENT ', event.target)
-    console.log("Using othIngred:  " + this.state.othIngred);
+    console.log("You clicked Search (other):  " + this.state.othIngred);
     API.getApiRecipes(this.state.othIngr)
     .then(res => {
       this.setState({ recipes: res.data })
@@ -180,17 +186,12 @@ class Ingredients extends Component {
     return (
       <Container fluid>
         <Row>
+
+        {/* First Column Begins Here */}  
           <Col size="md-6">
             <div className="page-header">
               <h1>&emsp;Add An Ingredient</h1>
               <form>
-            {/*
-                <div className="input-group mb-3">
-                  <input type="text" name="addIngr" value={this.addIngr} onChange={this.handleInputChange} className="form-control" placeholder="Ingredient (required)" />&emsp;
-                  <button className="btn btn-success" onClick={this.handleFormSubmit} type="button" id="button-submit">Submit</button>
-                </div>
-            */}
-
                <InputGroup
                   addIngr={this.state.addIngr}
                   handleInputChange={this.handleInputChange}
@@ -199,7 +200,6 @@ class Ingredients extends Component {
                   btnText={"Submit"}
                 />
               </form>
-
               <br/>
               <h1>&emsp;Ingredients On-Hand:</h1>
               {this.state.ingredients ? (
@@ -211,6 +211,7 @@ class Ingredients extends Component {
                         {/* Checkbox is first thing */}
                         <input 
                           type="checkbox"
+                          defaultChecked={ingredients.selected}
                           onClick={() => this.chosenIngredients(ingredients._id)}
                         /> &emsp;
                         {/* Ingredient name is second thing */}
@@ -229,45 +230,25 @@ class Ingredients extends Component {
                 <h3>No Ingredients to Display</h3>
               </List>
             )}
-
             </div>
           </Col>
- 
+
+        {/* Second Column Begins Here */}
           <Col size="md-6 sm-12">
             <Container>
               <div className="page-header">
                 <h1>&emsp;Find Recipes from Ingredients:</h1>
-      {/*
-                <Row>
-                <Col size="md-2">
-                  <button className="btn btn-success" id="swALL" onClick={this.searchWithAll} type="button">Search All</button>&emsp;
-                </Col>
-                <Col size="md-2">
-                  <button className="btn btn-success" id="swCHK" onClick={this.searchWithChosen} type="button">Search Checked</button>
-                </Col>
-
-                <Col size="md-6">
-                  <input type="text" name="othIngr" value={this.othIngr} onChange={this.handleRecipeInputChange} className="form-control othIngrTB" placeholder="search other" />&emsp;
-                </Col>
-                <Col size="md=2">  
-                  <button className="btn btn-success" onClick={this.searchWithOther} type="button" id="button-submit">Submit</button>
-                </Col>
-                </Row>
-      */}
-
                 <div className="input-group mb-3">
                   <div className="input-group-prepend" id="button-addon3">
                     <button className="btn btn-info" type="button" onClick={this.searchWithAll}>Search All</button>
                     <button className="btn btn-primary" type="button" onClick={this.searchWithChosen}>Search Checked</button>
                   </div>
-                  <input type="text" name="othIngr" value={this.state.othIngr} onChange={this.handleOthIngrChange} className="form-control" placeholder="or type other ingredients here..." />
+                  <input type="text" name="othIngr" value={this.state.othIngr} onChange={this.handleOthIngrChange} className="form-control" placeholder="item1, item2, etc." />
                   
                   <div className="input-group-append">
                     <button className="btn btn-success" onClick={this.searchWithOther} type="button" id="button-addon2">Search</button>
                   </div>
                 </div>
-
-
                   {!this.state.recipes.length ? (
                     <h5 className="text-center">No Recipes to Display</h5>
                   ) : (
