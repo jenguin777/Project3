@@ -4,20 +4,22 @@ import { Container, Row, Col } from "../Grid";
 
 // RecipeListItem renders a bootstrap list item containing data from the recipe api call
 export const RecipeListItem = props => (
-  <li className="list-group-item">
-    <Container>
+  <li className="card-deck">
+    <li className="card">
+    <Container size="lg-3">
       <Row>
-        <Col size="xs-4 sm-2">
-          <Thumbnail src={props.thumbnail || "https://placehold.it/300x300"} />
+        <Col size="lg-3 ">
+          <Thumbnail src={props.thumbnail || "https://placehold.it/400x400"} />
         </Col>
-        <Col size="xs-8 sm-9">
+        <Col size="xs-4 sm-4">
           <h3>{props.title}</h3>
-          <p>Ingredients: {props.ingredients}</p>
+          {/* <p>Ingredients: {props.ingredients}</p> */}
           <a rel="noreferrer noopener" target="_blank" href={props.href}>
             Go to recipe!
           </a>
         </Col>
       </Row>
     </Container>
+    </li>
   </li>
 );
