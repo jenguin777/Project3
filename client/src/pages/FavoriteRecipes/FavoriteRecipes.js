@@ -59,41 +59,43 @@ class FavoriteRecipes extends Component {
       <Container fluid>
         <Row id="topRow">
           <Col size="md-6">
-            <img src={image} className="img-thumbnail" alt-text="recipe">
+            <img src={image} className="img-thumbnail" alt="recipe">
             </img>
                 <form>
-                <Input
-                  value={this.state.title}
-                  onChange={this.handleInputChange}
-                  name="title"
-                  placeholder="Fave Name"
-                />
-                <Input
-                  value={this.state.href}
-                  onChange={this.handleInputChange}
-                  name="href"
-                  placeholder="Link"
-                />
-                <Input
-                  value={this.state.ingredients}
-                  onChange={this.handleInputChange}
-                  name="ingredients"
-                  placeholder="Ingredients"
-                />
-                <Input
-                  value={this.state.thumbnail}
-                  onChange={this.handleInputChange}
-                  name="thumbnail"
-                  placeholder="Thumbnail"
-                />
-                <FormBtn
-                  disabled={!(this.state.title)}
-                  onClick={this.handleFormSubmit}
-                >
-                  Submit Favorite Recipe
-                </FormBtn>
-              </form>
-          </Col>
+                  <Input
+                    value={this.state.title}
+                    onChange={this.handleInputChange}
+                    name="title"
+                    placeholder="Fave Name"
+                    inputvalue=""
+                  />
+                  <Input
+                    value={this.state.ingredients}
+                    onChange={this.handleInputChange}
+                    name="ingredients"
+                    placeholder="Ingredients"
+                    inputvalue=""
+                  />
+                </form>
+
+                <form>
+                    <div className="form-group">
+                      <textarea
+                        className="form-control" rows="10" id="instructionsInput"
+                        value={this.state.instructions}
+                        onChange={this.handleInputChange}
+                        name="instructions"
+                        placeholder="Instructions">
+                      </textarea>
+                    </div>
+                    <FormBtn
+                      disabled={!(this.state.title)}
+                      onClick={this.handleFormSubmit}
+                    >
+                      Submit Favorite Recipe
+                    </FormBtn>
+                </form>
+            </Col>
 
         <Col size="md-6 sm-12">
           <Container>
