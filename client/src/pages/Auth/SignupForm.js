@@ -57,7 +57,7 @@ class SignupForm extends Component {
         <Row>
           <Col size="md-3"></Col>
           <Col size="md-6">
-            <Card title="Register for Recipe Warlock">
+            <Card title="Register for YumBot">
               <form style={{marginTop: 10}}>
                 <label htmlFor="username">First name: </label>
                 <Input

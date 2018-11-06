@@ -42,7 +42,7 @@ class LoginForm extends Component {
           <Row>
             <Col size="md-3"></Col>
             <Col size="md-6">
-              <Card title="Login to Recipe Warlock">
+              <Card title="Login to YumBot">
                 <form style={{marginTop: 10}}>
                   <label htmlFor="username">Username: </label>
                   <Input
