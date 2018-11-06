@@ -168,8 +168,9 @@ class Ingredients extends Component {
     .catch(err => console.log(err));
   };
 
-  newFave = id => {
-    API.saveFave(id)
+  newFave = index => {
+    const recipe = this.state.recipes[index];
+    API.saveFave(recipe)
       .then(res => this.loadIngredients())
       .catch(err => console.log(err));
   };
@@ -272,16 +273,18 @@ class Ingredients extends Component {
                     <h5 className="text-center">No Recipes to Display</h5>
                   ) : (
                     <RecipeList>
-                      {this.state.recipes.map(recipe => {
+                      {this.state.recipes.map((recipe, index )=> {
+                        console.log(recipe, "----------- recipes --------------")
                         return (
                           
                           <RecipeListItem
+                            index = {index}
                             key={recipe.title}
                             title={recipe.title}
                             href={recipe.href}
                             ingredients={recipe.ingredients}
                             thumbnail={recipe.thumbnail}
-                            onClick={() => this.newFave(recipe)}
+                            onClick={ this.newFave }
                             >
                         </RecipeListItem>
                         
