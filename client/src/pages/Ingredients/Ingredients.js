@@ -33,7 +33,7 @@ class Ingredients extends Component {
       .then(res => this.loadIngredients())
       .catch(err => console.log(err));
   };
-  
+
   handleInputChange = event => {
     const { name, value } = event.target;
     this.setState({
@@ -113,6 +113,7 @@ class Ingredients extends Component {
   }; 
 
   // Search API with checked ingredients
+
   searchWithChosen = event => {
     event.preventDefault();
     // first, build chosenIngred String from ingredients.selected
@@ -171,6 +172,12 @@ class Ingredients extends Component {
       console.log('res ', res.data)
     })
     .catch(err => console.log(err));
+  };
+
+  newFave = id => {
+    API.saveFave(id)
+      .then(res => this.loadIngredients())
+      .catch(err => console.log(err));
   };
 
   render() {
@@ -248,13 +255,17 @@ class Ingredients extends Component {
                     <RecipeList>
                       {this.state.recipes.map(recipe => {
                         return (
+                          
                           <RecipeListItem
                             key={recipe.title}
                             title={recipe.title}
                             href={recipe.href}
                             ingredients={recipe.ingredients}
                             thumbnail={recipe.thumbnail}
-                          />
+                            onClick={() => this.newFave(recipe)}
+                            >
+                        </RecipeListItem>
+                        
                         );
                       })}
                     </RecipeList>

@@ -16,6 +16,8 @@ module.exports = {
       .catch(err => res.status(422).json(err));
   },
   create: function(req, res) {
+    console.log("--------- In Favs Controller ------------");
+    console.log(req.body, "Save this recipe ");
     db.Faves
       .create(req.body)
       .then(dbModel => res.json(dbModel))
@@ -23,7 +25,8 @@ module.exports = {
   },
   update: function(req, res) {
     db.Faves
-      .findOneAndUpdate({ _id: req.params.id }, req.body)
+      // .findOneAndUpdate({ _id: req.params.id }, req.body)
+      .findOneAndUpdate({ _id: req.params.id }, { $set: {selected: true}}, req.body)
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   },
