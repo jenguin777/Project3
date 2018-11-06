@@ -8,6 +8,7 @@ import { Input, FormBtn} from "../../components/Form";
 import './ingredients.css';
 import { InputGroup } from "../../components/Form/InputGroup";
 import CheckBtn from "../../components/CheckBtn";
+
 let ing = []
 
 class Ingredients extends Component {
@@ -302,16 +303,17 @@ chosenIngredients = id => {
                     <RecipeList>
                       {this.state.recipes.map(recipe => {
                         return (
+                          
                           <RecipeListItem
                             key={recipe.title}
                             title={recipe.title}
                             href={recipe.href}
                             ingredients={recipe.ingredients}
                             thumbnail={recipe.thumbnail}
+                            onClick={() => this.newFave(recipe)}
                             >
-                        
-                        <FaveBtn onClick={() => this.newFave(recipe._id)} />
                         </RecipeListItem>
+                        
                         );
                       })}
                     </RecipeList>

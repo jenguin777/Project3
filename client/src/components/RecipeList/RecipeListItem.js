@@ -1,6 +1,5 @@
 import React from "react";
 import Thumbnail from "../Thumbnail";
-// import FaveBtn from "../FaveBtn";
 import { Container, Row, Col } from "../Grid";
 
 // RecipeListItem renders a bootstrap list item containing data from the recipe api call
@@ -17,6 +16,9 @@ export const RecipeListItem = props => (
           <a rel="noreferrer noopener" target="_blank" href={props.href}>
             Go to recipe!
           </a>
+          <span className="fave-btn" onClick={() => props}>
+            <i className="fa fa-heart">   Save</i>
+          </span>
         </Col>
       </Row>
     </Container>
