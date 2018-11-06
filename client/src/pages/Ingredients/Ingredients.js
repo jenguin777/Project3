@@ -10,6 +10,7 @@ import { InputGroup } from "../../components/Form/InputGroup";
 import CheckBtn from "../../components/CheckBtn";
 
 let ing = []
+let allIng = [];
 
 class Ingredients extends Component {
   state = {
@@ -23,7 +24,6 @@ class Ingredients extends Component {
   };
 
   componentDidMount() {
-
     //Set all ingredients.selected to false when page first loads
     //until a way is found to check the checkboxes for the ones that are true.
     API.updateIngredients({
@@ -53,7 +53,6 @@ class Ingredients extends Component {
       .catch(err => console.log(err));
   };
 
-  
   handleInputChange = event => {
     const { name, value } = event.target;
     this.setState({
@@ -106,8 +105,7 @@ class Ingredients extends Component {
       .catch(err => console.log(err));
   };
 
-/*  
-  //put ingredients into ing array
+  //put ingredients into ing array to be searched with
   chosenIngredients = id => {
     API.getIngredient(id)
     .then(res => {
@@ -117,47 +115,8 @@ class Ingredients extends Component {
     })
     .catch(err => console.log(err));
   };
-*/
 
-//put ingredients into ing array
-chosenIngredients = id => {
-  console.log("id = " + id)
-  API.getIngredient(id)
-  .then(res => {
-    console.log("res.data = " + JSON.stringify(res.data))
-    console.log("res.data.selected = " + res.data.selected)
-    if (!res.data.selected) {
-      ing.push(res.data.name)
-      this.setState({ chosenIngr: ing})
-      console.log("ING = " + ing)
-    /*  
-      API.updateIngredient(id, {
-        selected: true
-      })
-      .then(res => {
-        console.log("Ingredient was updated");
-      })
-      .catch(err => console.log(err));
-    */
-    } else {
-      ing.pop(res.data.name)
-      this.setState({ chosenIngr: ing})
-      console.log("ING = " + ing)
-    /*  
-      API.updateIngredient(id, {
-        selected: false
-      })
-      .then(res => {
-        console.log("Ingredient was updated");
-      })
-      .catch(err => console.log(err));
-    */
-    }
-  })
-  .catch(err => console.log(err));
-} 
-
-
+  //JS to search with checked ingredient
   searchWithChosen = event => {
     event.preventDefault();
     console.log(ing)
@@ -168,14 +127,25 @@ chosenIngredients = id => {
         console.log('res ', res.data)
       })
       .catch(err => console.log(err));
-      console.log("clicked 'Search with all'");
+      console.log("clicked searched with checked ingrdient" + ing);
     };
 
+  allIngredients = () => {
+    API.getIngredients()
+    .then(res => {
+      this.setState({ allIngred: res.data, name: " "})
+      console.log("allIngred =", this.state.allIngred);
+    })
+    .catch(err => console.log(err));
+  }
+
+
+  //search with all ingredients in array 
   searchWithAll = event => {
     event.preventDefault();
-    console.log(ing)
+    this.allIngredients();
     console.log('EVENT ', event.target)
-    API.getApiRecipes(this.state.allIngred.join(", "))
+    API.getApiRecipes(this.state.allIngred)
       .then(res => {
         this.setState({ recipes: res.data })
         console.log('res ', res.data)
@@ -184,6 +154,7 @@ chosenIngredients = id => {
       console.log("clicked 'Search with all'");
   };
 
+  //search by typing ingredients
   searchWithOther = event => {
     event.preventDefault();
     console.log(ing)
