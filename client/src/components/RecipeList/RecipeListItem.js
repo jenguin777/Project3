@@ -16,6 +16,9 @@ export const RecipeListItem = props => (
           <a rel="noreferrer noopener" target="_blank" href={props.href}>
             Go to recipe!
           </a>
+          <span className="fave-btn" onClick={() => props}>
+            <i className="fa fa-heart">   Save</i>
+          </span>
         </Col>
       </Row>
     </Container>

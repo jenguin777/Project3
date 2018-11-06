@@ -1,14 +1,14 @@
 import React, { Component } from "react";
 import DeleteBtn from "../../components/DeleteBtn";
 import API from "../../utils/API";
-import { Link } from "react-router-dom";
 import { Col, Row, Container } from "../../components/Grid";
 import { RecipeList, RecipeListItem } from "../../components/RecipeList";
 import { List, ListItem } from "../../components/List";
-import { Input, TextArea, FormBtn} from "../../components/Form";
+import { Input, FormBtn} from "../../components/Form";
 import './ingredients.css';
 import { InputGroup } from "../../components/Form/InputGroup";
 import CheckBtn from "../../components/CheckBtn";
+
 let ing = []
 
 class Ingredients extends Component {
@@ -38,12 +38,6 @@ class Ingredients extends Component {
     this.loadIngredients();
    
   };
-
-  // loadApiRecipes = () => {
-  //   API.getApiRecipes(this.state.chosenIngred)
-  //     .then(res => this.setState({ recipes: res.data }))
-  //     .catch(err => console.log(err));
-  // };
 
   loadIngredients = () => {
     API.getIngredients()
@@ -203,6 +197,12 @@ chosenIngredients = id => {
     .catch(err => console.log(err));
   };
 
+  newFave = id => {
+    API.saveFave(id)
+      .then(res => this.loadIngredients())
+      .catch(err => console.log(err));
+  };
+
   render() {
     console.log('PROPS ', this.props)
     console.log('STATE ', this.state)
@@ -227,7 +227,6 @@ chosenIngredients = id => {
                   placeholder={"Ingredient (required)"}
                   btnText={"Submit"}
                 />
-
               </form>
 
               <br/>
@@ -304,13 +303,17 @@ chosenIngredients = id => {
                     <RecipeList>
                       {this.state.recipes.map(recipe => {
                         return (
+                          
                           <RecipeListItem
                             key={recipe.title}
                             title={recipe.title}
                             href={recipe.href}
                             ingredients={recipe.ingredients}
                             thumbnail={recipe.thumbnail}
-                          />
+                            onClick={() => this.newFave(recipe)}
+                            >
+                        </RecipeListItem>
+                        
                         );
                       })}
                     </RecipeList>
