@@ -3,12 +3,23 @@
   color: #ffbb99;
 }
 
+/* .nav-link {
+  font-family: 'Josefin Sans';
+} */
+
 a {
   color: #ffbb99;
+  font-family: 'Josefin Sans';
+  /* font-family: 'Righteous';  */
 }
 
 a:hover {
   color: #999999;
+}
+
+.float-right  {
+  font-family: 'Josefin Sans'
+  /* font-family: 'Righteous';  */
 }
 
 #logo {
