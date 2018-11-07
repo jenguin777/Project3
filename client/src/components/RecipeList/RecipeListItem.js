@@ -1,26 +1,36 @@
 import React from "react";
 import Thumbnail from "../Thumbnail";
-import { Container, Row, Col } from "../Grid";
+import { Row, Col } from "../Grid";
 
 // RecipeListItem renders a bootstrap list item containing data from the recipe api call
 export const RecipeListItem = props => (
-  <li className="list-group-item">
-    <Container>
-      <Row>
-        <Col size="xs-4 sm-2">
-          <Thumbnail src={props.thumbnail || "https://placehold.it/300x300"} />
-        </Col>
-        <Col size="xs-8 sm-9">
-          <h3>{props.title}</h3>
-          <p>Ingredients: {props.ingredients}</p>
-          <a rel="noreferrer noopener" target="_blank" href={props.href}>
-            Go to recipe!
-          </a>
-          <span className="fave-btn" onClick={() => props.onClick(props.index)}>
-            <i className="fa fa-heart">  Save</i>
-          </span>
-        </Col>
-      </Row>
-    </Container>
-  </li>
+  <Col size="md-6">
+    <div className="card-deck">
+      <div className="card">
+        <Row>
+          <div className="card-img-top" alt="Card image cap">
+            <Col size="sm-4 sm-12">
+              <Thumbnail src={props.thumbnail || "https://placehold.it/300x300"} />
+            </Col>
+          </div>
+          <div className="card-body">
+            <Col size="sm-3 md-12">
+              <div className="card-title">
+                <h3>{props.title}</h3>
+              </div>
+              <div className="card-text">
+                <p>Ingredients: {props.ingredients}</p>
+                <a rel="noreferrer noopener" target="_blank" href={props.href}>
+                  Go to recipe!
+                </a>
+                <span className="fave-btn" onClick={() => props.onClick(props.index)}>
+                  <i className="far fa-heart" data-test="pulse">  Save</i>
+                </span>
+              </div>
+            </Col>
+          </div>
+        </Row>
+      </div>
+    </div>
+  </Col>
 );

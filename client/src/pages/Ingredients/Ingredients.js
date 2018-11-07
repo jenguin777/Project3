@@ -266,7 +266,7 @@ class Ingredients extends Component {
                             ingredients={recipe.ingredients}
                             thumbnail={recipe.thumbnail}
                             onClick={ this.newFave }
-                            >
+                          >
                         </RecipeListItem>
                         
                         );
