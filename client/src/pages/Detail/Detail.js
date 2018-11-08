@@ -34,6 +34,7 @@ class Detail extends Component {
   handleFormSubmit = event => {
     event.preventDefault();
 
+    //need to exclude empty fields so values won't be overwritten with an empty value
     if (this.state.title || this.state.ingredients || this.state.instructions) {
       API.updateRecipe(this.state.recipe._id, {
         title: this.state.title, 
@@ -101,14 +102,14 @@ class Detail extends Component {
                   value={this.state.title}
                   onChange={this.handleInputChange}
                   name="title"
-                  placeholder={this.state.title}
+                  placeholder="Title"
                   inputvalue=""
                 />
                 <Input
                   value={this.state.ingredients}
                   onChange={this.handleInputChange}
                   name="ingredients"
-                  placeholder={this.state.ingredients}
+                  placeholder="Ingredients"
                   inputvalue=""
                 />
               </form>
@@ -120,7 +121,7 @@ class Detail extends Component {
                     value={this.state.instructions}
                     onChange={this.handleInputChange}
                     name="instructions"
-                    placeholder={this.state.instructions}>
+                    placeholder="Instructions">
                   </textarea>
                 </div>
                 <FormBtn

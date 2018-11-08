@@ -81,7 +81,7 @@ class PersonalRecipe extends Component {
               <form>
                 <div className="form-group">
                   <textarea
-                    className="form-control" rows="10" id="instructionsInput"
+                    className="form-control" rows="5" id="instructionsInput"
                     value={this.state.instructions}
                     onChange={this.handleInputChange}
                     name="instructions"
