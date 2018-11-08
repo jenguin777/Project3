@@ -10,7 +10,7 @@ export const RecipeListItem = props => (
         <Row>
           <div className="card-img-top" alt="Card image cap">
             <Col size="sm-4 sm-12">
-              <Thumbnail src={props.thumbnail || "https://placehold.it/300x300"} />
+              <Thumbnail src={props.thumbnail || "https://i.imgur.com/m02Q9u2.png"} />
             </Col>
           </div>
           <div className="card-body">

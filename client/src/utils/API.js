@@ -53,8 +53,10 @@ export default {
   saveRecipe: function(recipeData) {
     return axios.post("/api/recipes", recipeData);
   },
-
-    //new NL
+   // Updates a personal recipe with the given id
+   updateRecipe: function(id, recipeData) {
+    return axios.put("/api/recipes/" + id, recipeData);
+  },
 
    // --------FAVORITE RECIPES--------------
   // Gets all favorite recipes

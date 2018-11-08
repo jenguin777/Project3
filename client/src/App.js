@@ -5,6 +5,7 @@ import SignupForm from './pages/Auth/SignupForm';
 import Nav from "./components/Nav";
 import Ingredients from './pages/Ingredients';
 import Detail from "./pages/Detail";
+import FavesDetail from "./pages/FavesDetail";
 import NoMatch from "./pages/NoMatch";
 import AUTH from './utils/AUTH';
 import PersonalRecipe from "./pages/PersonalRecipe";
@@ -76,6 +77,7 @@ class App extends Component {
                 <Route exact path="/" component={() => <Ingredients user={this.state.user}/>} />
                 <Route exact path="/ingredients" component={() => <Ingredients user={this.state.user}/>} />
                 <Route exact path="/recipes/:id" component={Detail} />
+								<Route exact path="/faves/:id" component={FavesDetail} />
 								<Route exact path="/personalrecipe" component={PersonalRecipe} />
 								<Route exact path="/favoriterecipes" component={FavoriteRecipes} />
                 <Route component={NoMatch} />
