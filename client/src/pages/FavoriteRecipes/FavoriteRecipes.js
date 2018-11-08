@@ -41,44 +41,8 @@ class FavoriteRecipes extends Component {
  
   render() {
     return (
-    //   <Row id="topRow">
-    //   <Col size="md-6">
-    //     <div className="card-deck">
-    //       <div className="card">
-    //         <Row>
-    //           <div className="card-img-top" alt="Card image cap">
-    //             <Col size="md-6">
-    //             <h1 id="savedFavesHeader">&emsp;Favorite Recipes</h1>
-    //               {this.state.faves ? (
-    //                     <List>
-    //                       {this.state.faves.map(faves => {
-    //                         return (
-    //                           <ListItem key={faves._id}>
-    //                             <a href={"/faves/" + faves._id}>
-    //                               <strong>
-    //                                 {faves.title}
-    //                               </strong>
-    //                             </a>
-    //                             <DeleteBtn onClick={() => this.deleteFave(faves._id)} />
-    //                           </ListItem>
-    //                         );
-    //                       })}
-    //                     </List>
-    //                   ) : (
-    //                     <h3>No Favorites to Display</h3>
-    //               )}
-    //               </Col>
-    //           </div>
-    //         </Row>
-    //       </div>
-    //     </div>
-    //   </Col>
-    // </Row>
-
-
-
-
-      <Container fluid>
+  
+  <Container fluid>
         <Row id="topRow">
          <Col size="md-6 sm-12">
           <Container>

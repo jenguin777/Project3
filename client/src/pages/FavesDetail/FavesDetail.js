@@ -4,14 +4,15 @@ import { Col, Row, Container } from "../../components/Grid";
 import Jumbotron from "../../components/Jumbotron";
 import API from "../../utils/API";
 
-class Detail extends Component {
+class FavesDetail extends Component {
   state = {
     recipe: {}
   };
 
   // When this component mounts, grab the recipe with the _id of this.props.match.params.id
   componentDidMount() {
-    API.getRecipe(this.props.match.params.id)
+    console.log(this.props);
+    API.getFave(this.props.match.params.id)
       .then(res => this.setState({ recipe: res.data }))
       .catch(err => console.log(err));
   }
@@ -59,4 +60,4 @@ class Detail extends Component {
   }
 }
 
-export default Detail;
+export default FavesDetail;
