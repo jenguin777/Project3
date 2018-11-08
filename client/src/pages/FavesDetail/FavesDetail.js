@@ -31,7 +31,8 @@ class FavesDetail extends Component {
           </Col>
         </Row>
         <Row>
-          <Col size="md-10 md-offset-1">
+        <Col size="md-2">    </Col>
+          <Col size="md-8 md-offset-1">
             <article>
               <h1>Ingredients</h1>
               <p>
@@ -41,7 +42,8 @@ class FavesDetail extends Component {
           </Col>
         </Row>
         <Row>
-          <Col size="md-10 md-offset-1">
+        <Col size="md-2">    </Col>
+          <Col size="md-8 md-offset-1">
             <article>
               <h1>Instructions</h1>
               <p>
@@ -51,6 +53,7 @@ class FavesDetail extends Component {
           </Col>
         </Row>
         <Row>
+        <Col size="md-2">    </Col>
           <Col size="md-2">
             <Link to="/favoriterecipes">← Back to Favorite Recipes</Link>
           </Col>

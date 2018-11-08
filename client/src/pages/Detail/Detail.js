@@ -1,20 +1,49 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { Col, Row, Container } from "../../components/Grid";
+import { Input, FormBtn} from "../../components/Form";
 import Jumbotron from "../../components/Jumbotron";
 import API from "../../utils/API";
 
 class Detail extends Component {
   state = {
-    recipe: {}
+    recipe: {},
+    title: "",
+    ingredients: "",
+    instructions: ""
   };
 
   // When this component mounts, grab the recipe with the _id of this.props.match.params.id
   componentDidMount() {
+    this.loadRecipe();
+  }
+
+  loadRecipe = () => {
     API.getRecipe(this.props.match.params.id)
       .then(res => this.setState({ recipe: res.data }))
       .catch(err => console.log(err));
-  }
+  };
+
+  handleInputChange = event => {
+    const { name, value } = event.target;
+    this.setState({
+      [name]: value
+    });
+  };
+
+  handleFormSubmit = event => {
+    event.preventDefault();
+
+    if (this.state.title && this.state.ingredients && this.state.instructions) {
+      API.updateRecipe({
+        title: this.state.title, 
+        ingredients: this.state.ingredients,
+        instructions: this.state.instructions
+      })
+        .then(res => this.loadRecipe())
+        .catch(err => console.log(err));
+    }
+  };
 
 
   render() {
@@ -29,7 +58,13 @@ class Detail extends Component {
             </Jumbotron>
           </Col>
         </Row>
-        <Row>
+
+
+        <Row> 
+          {/* left side */}
+          <Col size="md-6">
+          {/* row 1 */}
+          <Row>
           <Col size="md-10 md-offset-1">
             <article>
               <h1>Ingredients</h1>
@@ -37,24 +72,66 @@ class Detail extends Component {
               {this.state.recipe.ingredients}
               </p>
             </article>
-          </Col>
-        </Row>
-        <Row>
+            </Col>
+          </Row>
+          {/* row 2 */}
+          <Row>
           <Col size="md-10 md-offset-1">
-            <article>
+          <article>
               <h1>Instructions</h1>
               <p>
               {this.state.recipe.instructions}
               </p>
             </article>
           </Col>
-        </Row>
+          </Row>
+          {/* row 3 */}
         <Row>
-          <Col size="md-2">
-            <Link to="/personalrecipe">← Back to Personal Recipes</Link>
+        <Col size="md-2">    </Col>
+          <Col size="md-8">
+          <Link to="/personalrecipe">← Back to Personal Recipes</Link>
+         </Col>
+        </Row>
+          </Col>
+
+          {/* right side */}
+          <Col size="md-6">
+              <form>
+                <Input
+                  value={this.state.title}
+                  onChange={this.handleInputChange}
+                  name="title"
+                  placeholder={this.state.title}
+                  inputvalue=""
+                />
+                <Input
+                  value={this.state.ingredients}
+                  onChange={this.handleInputChange}
+                  name="ingredients"
+                  placeholder={this.state.ingredients}
+                  inputvalue=""
+                />
+              </form>
+
+              <form>
+                <div className="form-group">
+                  <textarea
+                    className="form-control" rows="5" id="instructionsInput"
+                    value={this.state.instructions}
+                    onChange={this.handleInputChange}
+                    name="instructions"
+                    placeholder={this.state.instructions}>
+                  </textarea>
+                </div>
+                <FormBtn
+                  onClick={this.handleFormSubmit}
+                >
+                  Update Recipe
+                </FormBtn>
+              </form>
           </Col>
         </Row>
-      </Container>
+        </Container>
     );
   }
 }
