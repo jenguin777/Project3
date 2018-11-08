@@ -34,8 +34,8 @@ class Detail extends Component {
   handleFormSubmit = event => {
     event.preventDefault();
 
-    if (this.state.title && this.state.ingredients && this.state.instructions) {
-      API.updateRecipe({
+    if (this.state.title || this.state.ingredients || this.state.instructions) {
+      API.updateRecipe(this.state.recipe._id, {
         title: this.state.title, 
         ingredients: this.state.ingredients,
         instructions: this.state.instructions
