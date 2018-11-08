@@ -52,7 +52,7 @@ class FavesDetail extends Component {
         </Row>
         <Row>
           <Col size="md-2">
-            <Link to="/">← Back to Home Page</Link>
+            <Link to="/favoriterecipes">← Back to Favorite Recipes</Link>
           </Col>
         </Row>
       </Container>
