@@ -3,8 +3,9 @@ const db = require("../models");
 // Defining methods for the recipesController
 module.exports = {
   findAll: function(req, res) {
+    console.log(req.params.username)
     db.Recipe
-      .find(req.query)
+      .find({ username: req.params.username})
       .sort({ date: -1 })
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));

@@ -3,9 +3,9 @@ const recipesController = require("../../controllers/recipesController");
 
 // Matches with "/api/recipes"
 router.route("/")
-  .get(recipesController.findAll)
   .post(recipesController.create);
 
+router.route('/username/:username').get(recipesController.findAll)
 // Matches with "/api/recipes/:id"
 router
   .route("/:id")

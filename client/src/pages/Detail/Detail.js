@@ -19,6 +19,8 @@ class Detail extends Component {
   }
 
   loadRecipe = () => {
+    // API.getRecipe(this.props.match.params.id)
+    console.log (this.props)
     API.getRecipe(this.props.match.params.id)
       .then(res => this.setState({ recipe: res.data }))
       .catch(err => console.log(err));

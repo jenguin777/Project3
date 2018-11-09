@@ -11,6 +11,7 @@ class FavoriteRecipes extends Component {
     state = {
       currentPage: "FavoriteRecipes",
       faves: [],
+      username: ""
     };
 
      
@@ -19,7 +20,7 @@ class FavoriteRecipes extends Component {
   }
 
   loadFaves = () => {
-    API.getFaves()
+    API.getFaves(this.props.user.username)
       .then(res =>
         this.setState({ faves: res.data})
       )
