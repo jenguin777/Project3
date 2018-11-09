@@ -34,6 +34,7 @@ module.exports = {
   },
   logout: (req, res) => {
     if (req.user) {
+      console.log("Logout");
       req.session.destroy();
       res.clearCookie('connect.sid'); // clean up!
       return res.json({ msg: 'logging you out' });

@@ -46,3 +46,7 @@ p   {
   .fa:hover {
     color: red;
   }
+
+  .favorited {
+    color: red;
+}

@@ -43,13 +43,15 @@ class App extends Component {
     event.preventDefault();
     
 		AUTH.logout().then(response => {
-			console.log(response.data);
+			console.log('successfully logged out!');
+			console.log(response.status);
 			if (response.status === 200) {
 				this.setState({
 					loggedIn: false,
 					user: null
 				});
 			}
+
 		});
 	}
 
@@ -73,7 +75,7 @@ class App extends Component {
           <div>
             <Nav user={this.state.user} logout={this.logout}/>
             <div className="main-view">
-              <Switch>
+              {/* <Switch>
                 <Route exact path="/" component={() => <Ingredients user={this.state.user}/>} />
                 <Route exact path="/ingredients" component={() => <Ingredients user={this.state.user}/>} />
                 <Route exact path="/recipes/:id" component={Detail} />
@@ -81,14 +83,25 @@ class App extends Component {
 								<Route exact path="/personalrecipe" component={PersonalRecipe} />
 								<Route exact path="/favoriterecipes" component={FavoriteRecipes} />
                 <Route component={NoMatch} />
+              </Switch> */}
+							<Switch>
+                <Route exact path="/" component={() => <Ingredients user={this.state.user}/>} />
+                <Route exact path="/ingredients" component={() => <Ingredients user={this.state.user}/>} />
+                <Route exact path="/recipes/:id" component={() => <Detail user={this.state.user}/>} />
+								<Route exact path="/faves/:id" component={() => <FavesDetail user={this.state.user}/>} />
+								<Route exact path="/personalrecipe" component={() => <PersonalRecipe user={this.state.user}/>} />
+								<Route exact path="/favoriterecipes" component={() => <FavoriteRecipes user={this.state.user}/>} />
+                <Route component={NoMatch} />
               </Switch>
             </div>
           </div>
         )}
         { !this.state.loggedIn && (
           <div className="auth-wrapper" style={{paddingTop:40}}>
-            <Route exact path="/" component={() => <LoginForm login={this.login}/>} />
-            <Route exact path="/ingredients" component={() => <LoginForm user={this.login}/>} />
+            <Route exact path="/" render={() => <LoginForm login={this.login}/>} />
+            <Route exact path="/ingredients" component={() => <LoginForm login={this.login}/>} />
+						<Route exact path="/personalrecipe" component={() => <LoginForm login={this.login}/>} />
+						<Route exact path="/favoriterecipes" component={() => <LoginForm login={this.login}/>} />
             <Route exact path="/signup" component={SignupForm} />
           </div>
         )}

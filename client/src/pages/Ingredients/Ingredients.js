@@ -175,11 +175,18 @@ class Ingredients extends Component {
   };
 
   newFave = index => {
+    this.markFave();
     const recipe = this.state.recipes[index];
     API.saveFave(recipe)
       .then(res => this.loadIngredients())
       .catch(err => console.log(err));
   };
+
+  markFave = () => {
+    // if(this.attr("className") == "fa fa-heart" ){
+    //   this.attr("className", "fa fa-heart favorited");
+      console.log("I favorited this recipe");
+      }
 
   render() {
     console.log('PROPS ', this.props)

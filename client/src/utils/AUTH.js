@@ -7,6 +7,7 @@ export default {
   },
   // Logs the user out
   logout: function() {
+    console.log("logout");
     return axios.post('/auth/logout');
   },
   // Log the user in
