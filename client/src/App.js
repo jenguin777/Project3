@@ -75,20 +75,12 @@ class App extends Component {
           <div>
             <Nav user={this.state.user} logout={this.logout}/>
             <div className="main-view">
-              {/* <Switch>
-                <Route exact path="/" component={() => <Ingredients user={this.state.user}/>} />
-                <Route exact path="/ingredients" component={() => <Ingredients user={this.state.user}/>} />
-                <Route exact path="/recipes/:id" render={(props) => <Detail user={this.state.user} {...props}/>}/>
-								<Route exact path="/faves/:id" component={(props) => <FavesDetail user={this.state.user} {...props}/>} />
-								<Route exact path="/personalrecipe" component={() => <PersonalRecipe user={this.state.user}/>} />
-								<Route exact path="/favoriterecipes" component={() => <FavoriteRecipes user={this.state.user}/>} />
-                <Route component={NoMatch} />
-              </Switch> */}
+          
 							<Switch>
                 <Route exact path="/" component={() => <Ingredients user={this.state.user}/>} />
                 <Route exact path="/ingredients" component={() => <Ingredients user={this.state.user}/>} />
-                <Route exact path="/recipes/:id" component={() => <Detail user={this.state.user}/>} />
-								<Route exact path="/faves/:id" component={() => <FavesDetail user={this.state.user}/>} />
+                <Route exact path="/recipes/:id" component={(props) => <Detail user={this.state.user} {...props}/>} />
+								<Route exact path="/faves/:id" component={(props) => <FavesDetail user={this.state.user} {...props}/>} />
 								<Route exact path="/personalrecipe" component={() => <PersonalRecipe user={this.state.user}/>} />
 								<Route exact path="/favoriterecipes" component={() => <FavoriteRecipes user={this.state.user}/>} />
                 <Route component={NoMatch} />
