@@ -38,6 +38,7 @@ class LoginForm extends Component {
 		} else {
 			return (
 				<div className="login">
+				<Wrapper>
 				<Container>
           <Row>
             <Col size="md-3"></Col>
@@ -66,6 +67,7 @@ class LoginForm extends Component {
             <Col size="md-3"></Col>
           </Row>
 				</Container>
+				</Wrapper>
 				</div>
 			)
 		}
