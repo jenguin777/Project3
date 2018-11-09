@@ -7,7 +7,9 @@ const faveSchema = new Schema({
   href: { type: String, required: true },
   ingredients: { type: String, required: true },
   thumbnail: { type: String },
-  selected: {type: Boolean, default: false }
+  selected: {type: Boolean, default: false },
+  // username : [{type: Schema.Types.ObjectId, ref: 'Users' }] //trying to get user view to work
+  username: {type: String}
 });
 
 const Faves = mongoose.model("Faves", faveSchema);

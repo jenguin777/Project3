@@ -12,7 +12,8 @@ class PersonalRecipe extends Component {
     title: "",
     name: "",
     ingredients: "",
-    instructions: ""
+    instructions: "",
+    username: ""
   };
  
   componentDidMount() {
@@ -20,7 +21,7 @@ class PersonalRecipe extends Component {
   }
 
   loadRecipes = () => {
-    API.getRecipes()
+    API.getRecipes(this.props.user.username)
       .then(res =>
         this.setState({ recipes: res.data, title: "", ingredients: "", instructions: "" })
       )
@@ -44,10 +45,12 @@ class PersonalRecipe extends Component {
     event.preventDefault();
 
     if (this.state.title && this.state.ingredients && this.state.instructions) {
+      console.log(this.props)
       API.saveRecipe({
         title: this.state.title, 
         ingredients: this.state.ingredients,
-        instructions: this.state.instructions
+        instructions: this.state.instructions,
+        username: this.props.user.username
       })
         .then(res => this.loadRecipes())
         .catch(err => console.log(err));
