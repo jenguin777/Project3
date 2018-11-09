@@ -53,6 +53,8 @@ class SignupForm extends Component {
     }
     
 		return (
+
+      <div className="auth">
       <Container>
         <Row>
           <Col size="md-3"></Col>
@@ -102,6 +104,7 @@ class SignupForm extends Component {
           <Col size="md-3"></Col>
         </Row>
       </Container>
+      </div>
 		)
 	}
 }
