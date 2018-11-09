@@ -38,8 +38,8 @@ export default {
 
    // --------PERSONAL RECIPES--------------
   // Gets all personal recipes
-  getRecipes: function() {
-    return axios.get("/api/recipes");
+  getRecipes: function(username) {
+    return axios.get(`/api/recipes/username/${username}`);
   },
   // Gets the personal recipe with the given id
   getRecipe: function(id) {
@@ -60,8 +60,8 @@ export default {
 
    // --------FAVORITE RECIPES--------------
   // Gets all favorite recipes
-  getFaves: function() {
-    return axios.get("/api/faves");
+  getFaves: function(username) {
+    return axios.get(`/api/faves/username/${username}`);
   },
   // Gets the favorite recipe with the given id
   getFave: function(id) {
@@ -73,6 +73,7 @@ export default {
   },
   // Saves a favorite recipe to the database
   saveFave: function(recipeData) {
+    console.log(recipeData);
     return axios.post("/api/faves", recipeData);
   }
 

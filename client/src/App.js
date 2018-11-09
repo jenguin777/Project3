@@ -78,10 +78,10 @@ class App extends Component {
               {/* <Switch>
                 <Route exact path="/" component={() => <Ingredients user={this.state.user}/>} />
                 <Route exact path="/ingredients" component={() => <Ingredients user={this.state.user}/>} />
-                <Route exact path="/recipes/:id" component={Detail} />
-								<Route exact path="/faves/:id" component={FavesDetail} />
-								<Route exact path="/personalrecipe" component={PersonalRecipe} />
-								<Route exact path="/favoriterecipes" component={FavoriteRecipes} />
+                <Route exact path="/recipes/:id" render={(props) => <Detail user={this.state.user} {...props}/>}/>
+								<Route exact path="/faves/:id" component={(props) => <FavesDetail user={this.state.user} {...props}/>} />
+								<Route exact path="/personalrecipe" component={() => <PersonalRecipe user={this.state.user}/>} />
+								<Route exact path="/favoriterecipes" component={() => <FavoriteRecipes user={this.state.user}/>} />
                 <Route component={NoMatch} />
               </Switch> */}
 							<Switch>

@@ -13,7 +13,8 @@ class Ingredients extends Component {
     addIngr: "",
     recipes: [],
     othIngr: "",
-    recipeSearch: ""
+    recipeSearch: "",
+    username: ""
   };
 
   componentDidMount() {
@@ -52,7 +53,8 @@ class Ingredients extends Component {
     event.preventDefault();
     if (this.state.addIngr) {
       API.saveIngredient({
-        name: this.state.addIngr
+        name: this.state.addIngr,
+        username: this.props.user.username
       })
       .then(res => {
         this.loadIngredients()
@@ -177,6 +179,9 @@ class Ingredients extends Component {
   newFave = index => {
     this.markFave();
     const recipe = this.state.recipes[index];
+    // const username = this.state.user.username;
+    console.log(this.props)
+    recipe.username = this.props.user.username;
     API.saveFave(recipe)
       .then(res => this.loadIngredients())
       .catch(err => console.log(err));
