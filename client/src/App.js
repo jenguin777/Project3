@@ -91,10 +91,10 @@ class App extends Component {
           <div className="auth-wrapper" style={{paddingTop:40}}>
             <Route exact path="/" component={() => <LoginForm login={this.login}/>} />
             <Route exact path="/ingredients" component={() => <LoginForm login={this.login}/>} />
-						<Route exact path="/recipes/:id" component={() => <LoginForm login={this.login}/>} />
+						{/* <Route exact path="/recipes/:id" component={() => <LoginForm login={this.login}/>} />
 						<Route exact path="/faves/:id" component={() => <LoginForm login={this.login}/>} />
 						<Route exact path="/personalrecipe" component={() => <LoginForm login={this.login}/>} />
-						<Route exact path="/favoriterecipes" component={() => <LoginForm login={this.login}/>} />
+						<Route exact path="/favoriterecipes" component={() => <LoginForm login={this.login}/>} /> */}
             <Route exact path="/signup" component={SignupForm} />
           </div>
         )}
