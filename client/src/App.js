@@ -75,7 +75,6 @@ class App extends Component {
           <div>
             <Nav user={this.state.user} logout={this.logout}/>
             <div className="main-view">
-          
 							<Switch>
                 <Route exact path="/" component={() => <Ingredients user={this.state.user}/>} />
                 <Route exact path="/ingredients" component={() => <Ingredients user={this.state.user}/>} />
@@ -90,7 +89,7 @@ class App extends Component {
         )}
         { !this.state.loggedIn && (
           <div className="auth-wrapper" style={{paddingTop:40}}>
-            <Route exact path="/" render={() => <LoginForm login={this.login}/>} />
+            <Route exact path="/" component={() => <LoginForm login={this.login}/>} />
             <Route exact path="/ingredients" component={() => <LoginForm login={this.login}/>} />
 						<Route exact path="/recipes/:id" component={() => <LoginForm login={this.login}/>} />
 						<Route exact path="/faves/:id" component={() => <LoginForm login={this.login}/>} />
