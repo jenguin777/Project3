@@ -3,7 +3,7 @@ const Schema = mongoose.Schema;
 
 //Favorite Recipes
 const faveSchema = new Schema({
-  title: { type: String, required: true, unique: true },
+  title: { type: String, required: true },
   href: { type: String, required: true },
   ingredients: { type: String, required: true },
   thumbnail: { type: String },
