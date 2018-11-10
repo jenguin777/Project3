@@ -4,7 +4,6 @@ body {
 
 h1 {
     font-size: 32px;
-    /* font-family: "Righteous"; */
     font-family: 'Josefin Sans'; 
 }
 
@@ -29,24 +28,35 @@ p   {
     margin-left: 8px;
 }
 
-#button-addon2 {
+.btn-color1 {
     background-color: #008dbb;
+    color: white;
 }
 
-#button-addon2:hover {
+.btn-color1:hover {
     background-color: #007399;
+    color: white;
 }
 
-/* Favorite Icon styling */
-.fa, 
-.fa-heart {
-    color: grey;
-  }
+.btn-color2 {
+    background-color: #ff884d;
+    color: white;
+}
 
-  .fa:hover {
-    color: red;
-  }
+.btn-color2:hover {
+    background-color: #ff661a;
+    color: white;
+}
 
-  .favorited {
+.clear-float {
+    clear: right;
+}
+
+.little-note {
+    float: right;
+    font-size: 14px;
+    font-style: italic;
+    margin-bottom: 0px;
     color: red;
+    margin-right: 15px;
 }
