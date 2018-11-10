@@ -6,6 +6,7 @@ import { RecipeList, RecipeListItem } from "../../components/RecipeList";
 import { List, ListItem } from "../../components/List";
 import './ingredients.css';
 import { InputGroup } from "../../components/Form/InputGroup";
+import placeholder from "../../assets/placeholder.png";
 
 class Ingredients extends Component {
   state = {
@@ -14,7 +15,9 @@ class Ingredients extends Component {
     recipes: [],
     othIngr: "",
     recipeSearch: "",
-    username: ""
+    username: "",
+    lastAPICall: "",
+    heartClass: "far fa-heart"
   };
 
   componentDidMount() {
@@ -133,6 +136,7 @@ class Ingredients extends Component {
     });
     // then use chosenIngred String to call API
     console.log("You clicked Search Checked:  " + chosenIngred);
+    this.setState({lastAPICall: chosenIngred})
     API.getApiRecipes(chosenIngred)
       .then(res => { 
         this.setState({ recipes: res.data })
@@ -157,6 +161,7 @@ class Ingredients extends Component {
     });
     // then use allIngred String to call API
     console.log("You clicked Search All:  " + allIngred);
+    this.setState({lastAPICall: allIngred})
     API.getApiRecipes(allIngred)
       .then(res => {
         this.setState({ recipes: res.data })
@@ -168,6 +173,7 @@ class Ingredients extends Component {
   searchWithOther = event => {
     event.preventDefault();
     console.log("You clicked Search (other):  " + this.state.othIngred);
+    this.setState({lastAPICall: this.state.othIngred})
     API.getApiRecipes(this.state.othIngr)
     .then(res => {
       this.setState({ recipes: res.data })
@@ -177,7 +183,7 @@ class Ingredients extends Component {
   };
 
   newFave = index => {
-    this.markFave();
+    console.log("Hey, I'm getting ready to save a recipe with index = " + index);
     const recipe = this.state.recipes[index];
     // const username = this.state.user.username;
     console.log(this.props)
@@ -187,12 +193,6 @@ class Ingredients extends Component {
       .catch(err => console.log(err));
   };
 
-  markFave = () => {
-    // if(this.attr("className") == "fa fa-heart" ){
-    //   this.attr("className", "fa fa-heart favorited");
-      console.log("I favorited this recipe");
-      }
-
   render() {
     console.log('PROPS ', this.props)
     console.log('STATE ', this.state)
@@ -201,7 +201,7 @@ class Ingredients extends Component {
         <Row>
 
         {/* First Column Begins Here */}  
-          <Col size="md-6">
+          <Col size="lg-6 md-12">
             <div className="page-header">
               <h1>&emsp;Add An Ingredient</h1>
               <form>
@@ -211,6 +211,7 @@ class Ingredients extends Component {
                   handleFormSubmit={this.handleFormSubmit}
                   placeholder={"Ingredient (required)"}
                   btnText={"Submit"}
+                  className={"btn btn-color1"}
                 />
               </form>
               <br/>
@@ -244,27 +245,31 @@ class Ingredients extends Component {
               </List>
             )}
             </div>
-          </Col>
+          </Col><br/>
 
         {/* Second Column Begins Here */}
-          <Col size="md-6 sm-12">
-            <Container>
+          <Col size="lg-6 md-12">
+
               <div className="page-header">
-                <h1>&emsp;Find Recipes from Ingredients:</h1>
+                <h1>&emsp;Find Recipes:</h1>
                 <div className="input-group mb-3">
                   <div className="input-group-prepend" id="button-addon3">
-                    <button className="btn btn-info" type="button" onClick={this.searchWithAll}>Search All</button>
-                    <button className="btn btn-primary" type="button" onClick={this.searchWithChosen}>Search Checked</button>
+                    <button className="btn btn-color1" type="button" onClick={this.searchWithAll}>Search All</button>
+                    <button className="btn btn-color2" type="button" onClick={this.searchWithChosen}>Search Checked</button>
                   </div>
                   <input type="text" name="othIngr" value={this.state.othIngr} onChange={this.handleOthIngrChange} className="form-control" placeholder="item1, item2, etc." />
                   
                   <div className="input-group-append">
-                    <button className="btn btn-success" onClick={this.searchWithOther} type="button" id="button-addon2">Search</button>
+                    <button className="btn btn-color1" onClick={this.searchWithOther} type="button" id="button-addon2">Search</button>
                   </div>
                 </div>
                   {!this.state.recipes.length ? (
                     <h5 className="text-center">No Recipes to Display</h5>
                   ) : (
+                    <div>
+                      <p className="little-note">Add to Favorites</p>
+                      <div className="clear-float"></div>
+                      
                     <RecipeList>
                       {this.state.recipes.map((recipe, index )=> {
                         console.log(recipe, "----------- recipes --------------")
@@ -276,7 +281,8 @@ class Ingredients extends Component {
                             title={recipe.title}
                             href={recipe.href}
                             ingredients={recipe.ingredients}
-                            thumbnail={recipe.thumbnail}
+                            thumbnail={recipe.thumbnail || placeholder}
+                            className={this.state.heartClass}
                             onClick={ this.newFave }
                           >
                         </RecipeListItem>
@@ -284,9 +290,10 @@ class Ingredients extends Component {
                         );
                       })}
                     </RecipeList>
+                    </div>
                   )}
                 </div>
-            </Container>
+
           </Col>
         </Row>
       </Container>

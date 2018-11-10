@@ -3,9 +3,9 @@
   color: #ffbb99;
 }
 
-/* .nav-link {
-  font-family: 'Josefin Sans';
-} */
+.navbar-toggler-icon {
+  color: white;
+} 
 
 a {
   color: #ffbb99;
@@ -31,5 +31,9 @@ a:hover {
   color: #EEECEA;
   font-size: 32px;
   font-family: "lobster two";
+  margin-right: 20px;
+}
+
+.logout {
   margin-right: 20px;
 }

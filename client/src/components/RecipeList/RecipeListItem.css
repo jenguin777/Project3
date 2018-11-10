@@ -1,0 +1,13 @@
+.fave-btn {
+    color: red;
+    margin-right: 20px;
+}
+
+.fave-btn:hover {
+    color: #990000;
+}
+
+.fave-btn:active {
+    color: #330000;
+    font-size: 20px;
+}
