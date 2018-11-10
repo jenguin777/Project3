@@ -43,13 +43,15 @@ class App extends Component {
     event.preventDefault();
     
 		AUTH.logout().then(response => {
-			console.log(response.data);
+			console.log('successfully logged out!');
+			console.log(response.status);
 			if (response.status === 200) {
 				this.setState({
 					loggedIn: false,
 					user: null
 				});
 			}
+
 		});
 	}
 
@@ -78,9 +80,9 @@ class App extends Component {
                 <Route exact path="/" component={() => <Ingredients user={this.state.user}/>} />
                 <Route exact path="/ingredients" component={() => <Ingredients user={this.state.user}/>} />
                 <Route exact path="/recipes/:id" component={(props) => <Detail user={this.state.user} {...props}/>} />
-				<Route exact path="/faves/:id" component={(props) => <FavesDetail user={this.state.user} {...props}/>} />
-				<Route exact path="/personalrecipe" component={() => <PersonalRecipe user={this.state.user}/>} />
-				<Route exact path="/favoriterecipes" component={() => <FavoriteRecipes user={this.state.user}/>} />
+								<Route exact path="/faves/:id" component={(props) => <FavesDetail user={this.state.user} {...props}/>} />
+								<Route exact path="/personalrecipe" component={() => <PersonalRecipe user={this.state.user}/>} />
+								<Route exact path="/favoriterecipes" component={() => <FavoriteRecipes user={this.state.user}/>} />
                 <Route component={NoMatch} />
               </Switch>
             </div>
@@ -90,6 +92,8 @@ class App extends Component {
           <div className="auth-wrapper" style={{paddingTop:40}}>
             <Route exact path="/" render={() => <LoginForm login={this.login}/>} />
             <Route exact path="/ingredients" component={() => <LoginForm login={this.login}/>} />
+						<Route exact path="/recipes/:id" component={() => <LoginForm login={this.login}/>} />
+						<Route exact path="/faves/:id" component={() => <LoginForm login={this.login}/>} />
 						<Route exact path="/personalrecipe" component={() => <LoginForm login={this.login}/>} />
 						<Route exact path="/favoriterecipes" component={() => <LoginForm login={this.login}/>} />
             <Route exact path="/signup" component={SignupForm} />

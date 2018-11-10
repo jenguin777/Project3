@@ -23,8 +23,9 @@ export const RecipeListItem = props => (
                 <a rel="noreferrer noopener" target="_blank" href={props.href}>
                   Go to recipe!
                 </a>
+                <p>   </p>  
                 <span className="fave-btn" onClick={() => props.onClick(props.index)}>
-                  <i className="far fa-heart" data-test="pulse">  Save</i>
+                  <i className="fa fa-heart" data-test="pulse">  Save</i>
                 </span>
               </div>
             </Col>

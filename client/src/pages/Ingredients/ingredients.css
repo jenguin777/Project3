@@ -36,3 +36,17 @@ p   {
 #button-addon2:hover {
     background-color: #007399;
 }
+
+/* Favorite Icon styling */
+.fa, 
+.fa-heart {
+    color: grey;
+  }
+
+  .fa:hover {
+    color: red;
+  }
+
+  .favorited {
+    color: red;
+}

@@ -36,12 +36,12 @@ class Detail extends Component {
   handleFormSubmit = event => {
     event.preventDefault();
 
-    //need to exclude empty fields so values won't be overwritten with an empty value
     if (this.state.title || this.state.ingredients || this.state.instructions) {
       API.updateRecipe(this.state.recipe._id, {
-        title: this.state.title, 
-        ingredients: this.state.ingredients,
-        instructions: this.state.instructions
+         // If there are empty fields, use values stored in state rather than clearing field
+        title: this.state.title || this.state.recipe.title, 
+        ingredients: this.state.ingredients || this.state.recipe.ingredients,
+        instructions: this.state.instructions || this.state.recipe.instructions
       })
         .then(res => this.loadRecipe())
         .catch(err => console.log(err));
@@ -82,9 +82,10 @@ class Detail extends Component {
           <Col size="md-10 md-offset-1">
           <article>
               <h1>Instructions</h1>
-              <p>
+              {/* Using <pre> instead of <p> will render user-inputted line breaks and formatting */}
+              <pre>
               {this.state.recipe.instructions}
-              </p>
+              </pre>
             </article>
           </Col>
           </Row>
@@ -104,14 +105,14 @@ class Detail extends Component {
                   value={this.state.title}
                   onChange={this.handleInputChange}
                   name="title"
-                  placeholder="Title"
+                  placeholder={this.state.recipe.title}
                   inputvalue=""
                 />
                 <Input
                   value={this.state.ingredients}
                   onChange={this.handleInputChange}
                   name="ingredients"
-                  placeholder="Ingredients"
+                  placeholder={this.state.recipe.ingredients}
                   inputvalue=""
                 />
               </form>
@@ -123,7 +124,7 @@ class Detail extends Component {
                     value={this.state.instructions}
                     onChange={this.handleInputChange}
                     name="instructions"
-                    placeholder="Instructions">
+                    placeholder={this.state.recipe.instructions}>
                   </textarea>
                 </div>
                 <FormBtn
