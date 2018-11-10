@@ -4,8 +4,8 @@ export default {
 
   // --------INGREDIENTS--------------
   // Gets all ingredients
-  getIngredients: function() {
-    return axios.get("/api/ingredients");
+  getIngredients: function(username) {
+    return axios.get(`/api/ingredients/username/${username}`);
   },
   // Gets the ingredient with the given id
   getIngredient: function(id) {

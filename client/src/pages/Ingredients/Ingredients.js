@@ -22,7 +22,7 @@ class Ingredients extends Component {
   };
 
   loadIngredients = () => {
-    API.getIngredients()
+    API.getIngredients(this.props.user.username)
       .then(res =>
         this.setState({ ingredients: res.data, name: ""})
       )

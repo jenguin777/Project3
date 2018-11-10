@@ -4,8 +4,7 @@ const db = require("../models");
 module.exports = {
   findAll: function(req, res) {
     db.Ingredient
-      .find(req.query)
-      // .find({ username: req.params.username})
+      .find({ username: req.params.username})
       .sort({ date: -1 })
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
