@@ -82,9 +82,10 @@ class Detail extends Component {
           <Col size="md-10 md-offset-1">
           <article>
               <h1>Instructions</h1>
-              <p>
+              {/* Using <pre> instead of <p> will render user-inputted line breaks and formatting */}
+              <pre>
               {this.state.recipe.instructions}
-              </p>
+              </pre>
             </article>
           </Col>
           </Row>
