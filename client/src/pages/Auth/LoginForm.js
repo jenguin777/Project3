@@ -27,7 +27,7 @@ class LoginForm extends Component {
 		console.log('handleSubmit');
 		this.props.login(this.state.username, this.state.password);
 		this.setState({
-			redirectTo: '/'
+			redirectTo: '/signup'
 		});
 	}
 
