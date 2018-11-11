@@ -1,11 +1,9 @@
 import React, { Component } from "react";
-// import Thumbnail from "../../components/Thumbnail";
-import { Col, Row, Container } from "../../components/Grid";
 import API from "../../utils/API";
-import { List, ListItem } from "../../components/List";
-import DeleteBtn from "../../components/DeleteBtn";
 import './FavoriteRecipes.css';
-// import { RecipeList, RecipeListItem } from "../../components/RecipeList";
+import placeholder from '../../assets/placeholder.png';
+import RecipeCard from "../../components/RecipeCard";
+import CardWrapper from "../../components/CardWrapper";
 
 class FavoriteRecipes extends Component {
     state = {
@@ -13,7 +11,6 @@ class FavoriteRecipes extends Component {
       faves: [],
       username: ""
     };
-
      
   componentDidMount() {
     this.loadFaves();
@@ -41,37 +38,31 @@ class FavoriteRecipes extends Component {
   };
  
   render() {
+    console.log('PROPS ', this.props)
+    console.log('STATE ', this.state)
     return (
-  
-  <Container fluid>
-        <Row id="topRow">
-         <Col size="md-6 sm-12">
-          <Container>
-          <h1 id="savedFavesHeader">&emsp;Favorite Recipes</h1>
-            {this.state.faves ? (
-                  <List>
-                    {this.state.faves.map(faves => {
-                      return (
-                        <ListItem key={faves._id}>
-                          <a href={"/faves/" + faves._id}>
-                            <strong>
-                              {faves.title}
-                            </strong>
-                          </a>
-                          <DeleteBtn onClick={() => this.deleteFave(faves._id)} />
-                        </ListItem>
-                      );
-                    })}
-                  </List>
-                ) : (
-                  <h3>No Favorites to Display</h3>
-                )}
-            </Container>
-        </Col>
-      </Row>
-    </Container>
-        );
-    }
+      <div>
+        <h1>Favorite Recipes</h1>
+        <CardWrapper>
+          {this.state.faves.map(faves => {
+            return (
+
+              <RecipeCard key={faves._id}
+                thumbnail={faves.thumbnail || placeholder}
+                title={faves.title}
+                ingredients={faves.ingredients}
+                href={faves.href}
+                id={faves._id}
+                deleteFave={this.deleteFave}
+              >
+              </RecipeCard>
+
+            )
+          })}
+        </CardWrapper>
+      </div>
+    );
+  }
 }
-    export default FavoriteRecipes;
-    
+
+export default FavoriteRecipes;    

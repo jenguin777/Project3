@@ -84,8 +84,6 @@ class Ingredients extends Component {
       .then(res => {
         this.setState({recipes: res.data})
         this.setState({othIngr: ""});
-        console.log('res ', res.data)
-        console.log("othIngr ", this.state.othIngr)
       })
       .catch(err => console.log(err));
   };
@@ -177,7 +175,6 @@ class Ingredients extends Component {
     API.getApiRecipes(this.state.othIngr)
     .then(res => {
       this.setState({ recipes: res.data })
-      console.log('res ', res.data)
     })
     .catch(err => console.log(err));
   };
@@ -186,7 +183,6 @@ class Ingredients extends Component {
     console.log("Hey, I'm getting ready to save a recipe with index = " + index);
     const recipe = this.state.recipes[index];
     // const username = this.state.user.username;
-    console.log(this.props)
     recipe.username = this.props.user.username;
     API.saveFave(recipe)
       .then(res => this.loadIngredients())
@@ -209,6 +205,7 @@ class Ingredients extends Component {
                   addIngr={this.state.addIngr}
                   handleInputChange={this.handleInputChange}
                   handleFormSubmit={this.handleFormSubmit}
+                  handleEnterKey={this.handleEnterKey}
                   placeholder={"Ingredient (required)"}
                   btnText={"Submit"}
                   className={"btn btn-color1"}
@@ -241,7 +238,7 @@ class Ingredients extends Component {
               </List>
             ) : (
               <List>
-                <h3>No Ingredients to Display</h3>
+                <h5 className="text-blue">No Ingredients to Display</h5>
               </List>
             )}
             </div>
@@ -264,7 +261,7 @@ class Ingredients extends Component {
                   </div>
                 </div>
                   {!this.state.recipes.length ? (
-                    <h5 className="text-center">No Recipes to Display</h5>
+                    <h5 className="text-blue">No Recipes to Display</h5>
                   ) : (
                     <div>
                       <p className="little-note">Add to Favorites</p>
@@ -272,7 +269,6 @@ class Ingredients extends Component {
                       
                     <RecipeList>
                       {this.state.recipes.map((recipe, index )=> {
-                        console.log(recipe, "----------- recipes --------------")
                         return (
                           
                           <RecipeListItem
