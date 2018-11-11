@@ -1,11 +1,5 @@
-#topRow {
-    margin: 20px;
-}
-
-#savedFavesHeader {
-    margin: 20px;
-}
-
-img {
-    margin: 10px;
-}
+h1 {
+    text-align: center;
+    padding-top: 20px;
+  }
+  
