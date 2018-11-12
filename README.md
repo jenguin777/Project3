@@ -1,6 +1,6 @@
 # YumBot
 
-> How many times have you been planning a meal and had no idea what was tucked away in the far reaches of your refrigerator and cupboards? With the capability of creating an inventory of your ingredients and generating recipes that includes those ingredients, YumBot is the perfect solution to this problem. 
+> How many times have you tried to find a recipe that you could whip up with the ingredients tucked away in the far reaches of your refrigerator and cupboards? With the capability of creating an inventory of your ingredients and generating recipes that includes those ingredients, YumBot is the perfect solution to this problem. 
 
 ![](header.png) - screenshot
 
@@ -33,9 +33,11 @@ You can see a deployed version [here.](https://immense-mesa-61835.herokuapp.com/
 
 * Node.js
 * Express.js
-* Javascript / jQuery
+* Javascript
 * MongoDB / Mongoose
 * Recipe Puppy API
+* addThis
+* react-background-slideshow
 
 ## Authors
 
