@@ -3,6 +3,11 @@ import { Redirect, Link } from 'react-router-dom';
 import { Container, Row, Col } from '../../components/Grid';
 import { Card } from '../../components/Card';
 import { Input, FormBtn } from '../../components/Form';
+import BackgroundSlideshow from 'react-background-slideshow'
+import image1 from '../../assets/layer.jpg'
+import image2 from '../../assets/food.jpg'
+import image3 from '../../assets/cooking.png'
+import './Auth.css';
 
 class LoginForm extends Component {
   
@@ -37,7 +42,8 @@ class LoginForm extends Component {
 			return <Redirect to={{ pathname: this.state.redirectTo }} />
 		} else {
 			return (
-				<div className="login">
+				<Container>
+				<div id="in-front" className="login">
 				<Container>
           <Row>
             <Col size="md-3"></Col>
@@ -67,6 +73,13 @@ class LoginForm extends Component {
           </Row>
 				</Container>
 				</div>
+				// React Background Slideshow
+				
+					<div>
+						<BackgroundSlideshow id="behind" images={[ image1, image2, image3 ]} />
+					</div>
+				</Container>
+				
 			)
 		}
 	}
