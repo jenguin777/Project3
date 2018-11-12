@@ -1,8 +1,10 @@
 .zindex1{
     z-index: 1000;
     position: absolute;
-    background-color: 	rgb(192,192,192, 0.75);
+    background-color: #999999;
     padding: 20px;
     border-radius: 25px;
+    margin-left: 25%;
+    margin-top: 25%;
 }
 
