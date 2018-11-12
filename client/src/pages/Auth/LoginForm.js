@@ -4,12 +4,12 @@ import { Container, Row, Col } from '../../components/Grid';
 import { Card } from '../../components/Card';
 import { Input, FormBtn } from '../../components/Form';
 import "./LoginForm.css";
-import BackgroundSlideshow from 'react-background-slideshow'
+import BackgroundSlideshow from 'react-background-slideshow';
 
-import image1 from './assets/img1.jpg'
-import image2 from './assets/img2.jpg'
-import image3 from './assets/img3.jpg'
-import image4 from './assets/img4.jpg'
+import image1 from './assets/img1.jpg';
+import image2 from './assets/img2.jpg';
+import image3 from './assets/img3.jpg';
+import image4 from './assets/img4.jpg';
 
 class LoginForm extends Component {
   
