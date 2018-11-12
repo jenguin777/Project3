@@ -3,6 +3,13 @@ import { Redirect, Link } from 'react-router-dom';
 import { Container, Row, Col } from '../../components/Grid';
 import { Card } from '../../components/Card';
 import { Input, FormBtn } from '../../components/Form';
+import "./LoginForm.css";
+import BackgroundSlideshow from 'react-background-slideshow'
+
+import image1 from './assets/img1.jpg'
+import image2 from './assets/img2.jpg'
+import image3 from './assets/img3.jpg'
+import image4 from './assets/img4.jpg'
 
 class LoginForm extends Component {
   
@@ -38,12 +45,13 @@ class LoginForm extends Component {
 		} else {
 			return (
 				<div className="login">
-				<Container>
-          <Row>
-            <Col size="md-3"></Col>
-            <Col size="md-6">
-              <Card title="Login to YumBot">
-                <form style={{marginTop: 10}}>
+				<Container className="zindex1">
+          <Row className="zindex1">
+            <Col className="zindex1" size="md-3"></Col>
+            <Col className="zindex1" size="md-6">
+              <Card className="zindex1" title="Login to YumBot">
+                <form className="zindex1" style={{marginTop: 10}}>
+									<h1>YUM BOT LOGIN:</h1>
                   <label htmlFor="username">Username: </label>
                   <Input
                     type="text"
@@ -66,6 +74,7 @@ class LoginForm extends Component {
             <Col size="md-3"></Col>
           </Row>
 				</Container>
+				<BackgroundSlideshow images={[ image1, image2, image3, image4 ]} />
 				</div>
 			)
 		}
