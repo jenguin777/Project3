@@ -10,8 +10,8 @@ h1  {
 }
 
 .login  {
-  /* background: url('assets/layer.jpg');
-  background-size: cover; */
+  /* background: url('assets/layer.jpg'); */
+  background-size: cover;
   min-width: 100%;
   min-height: 100%;
   position: fixed; 

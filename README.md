@@ -1,21 +1,10 @@
-# YumBot
+# YumBot - A Personal Digital Cookbook
 
-> How many times have you been planning a meal and had no idea what was tucked away in the far reaches of your refrigerator and cupboards? With the capability of creating an inventory of your ingredients and generating recipes that includes those ingredients, YumBot is the perfect solution to this problem. 
-
-![](header.png) - screenshot
-
-## Getting Started
-
-The application features passport authentication, allowing the user to keep their ingredients and recipes safely tucked away for their own access. On the home page, type igredients into the form to add them to your persoal inventory. You can then select or deselect them to run the Recipe Puppy API and search for recipes that contain those ingredients. 
-You can also search for random recipes for other mealtime ideas. 
-
+YumBot allows the user to create an inventory of ingredients on hand, then submit a search to the Recipe Puppy API to return recipes that include one or more of those ingredients. Users can "favorite" API recipes to have them saved to their own Favorite Recipes Page. They can also save and edit their own recipes via their own Personal Recipes Page. Once saved, the recipes can be printed, emailed or shared via Twitter.
 
 ## Features
 
-This project makes it easy to:
-* Keep track of the ingredients in your kitchen.
-* Have a record of your own personal recipes.
-* Search for recipes using your current ingredients using the Recipe Puppy API. You can also do a general search for recipes.
+* User filtering (i.e., user1 cannot see user2's ingredients, favorite recipes, or personal recipes, and vice versa.
 
 ### Installing
 
@@ -31,11 +20,14 @@ You can see a deployed version [here.](https://immense-mesa-61835.herokuapp.com/
 
 ## Built With
 
+* React
 * Node.js
 * Express.js
-* Javascript / jQuery
+* Javascript
 * MongoDB / Mongoose
 * Recipe Puppy API
+* addThis
+* react-background-slideshow
 
 ## Authors
 

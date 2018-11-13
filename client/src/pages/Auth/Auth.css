@@ -1,9 +1,0 @@
-#in-front {
-    position:absolute;
-    z-index:100;
-}
-
-#behind {
-    position: absolute;
-    z-index: 1;
-}
